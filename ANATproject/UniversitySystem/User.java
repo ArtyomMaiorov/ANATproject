@@ -136,6 +136,5 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
 				+ firstName + ", lastName=" + lastName + ", middleName=" + middleName + ", birthDate=" + birthDate
 				+ ", gender=" + gender + ", citizenship="+ citizenship + ", email=" + email + ", login=" + login + ", password=" + password + "]";
 	}
-    
-    
+     
 }
