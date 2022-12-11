@@ -1,33 +1,10 @@
 package ANAT;
-
-
-/**
-* @generated
-*/
-public class Admin extends UserEmployee {
-    
-    
-    /**
-    * @generated
-    */
+public class Admin extends User {
     private UserFactory userFactory;
-    
-    /**
-    * @generated
-    */
     private Manager manager;
-    
-    /**
-    * @generated
-    */
     private Database database;
     
-    
 
-    
-    /**
-    * @generated
-    */
     public Manager getManager() {
         return this.manager;
     }

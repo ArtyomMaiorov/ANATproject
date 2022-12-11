@@ -1,114 +1,27 @@
 package ANAT;
-
-
-/**
-* @generated
-*/
 public class User implements Serializable, Comparable, CanBeResearcher {
-    
-    /**
-    * @generated
-    */
     private int ID;
-    
-    /**
-    * @generated
-    */
     private String Name;
-    
-    /**
-    * @generated
-    */
     private String email;
-    
-    /**
-    * @generated
-    */
     private String address;
-    
-    /**
-    * @generated
-    */
     private String id;
-    
-    /**
-    * @generated
-    */
     private String firstName;
-    
-    /**
-    * @generated
-    */
     private String lastName;
-    
-    /**
-    * @generated
-    */
     private String middleName;
-    
-    /**
-    * @generated
-    */
-    private  ;
-    
-    /**
-    * @generated
-    */
     private String birthDate;
-    
-    /**
-    * @generated
-    */
     private Gender gender;
-    
-    /**
-    * @generated
-    */
     private String maritalStatus;
-    
-    /**
-    * @generated
-    */
     private String nationality;
-    
-    /**
-    * @generated
-    */
     private String citizenship;
-    
-    /**
-    * @generated
-    */
-    private String e-mail;
-    
-    /**
-    * @generated
-    */
+    private String eMail;
     private String login;
-    
-    /**
-    * @generated
-    */
     private String password;
-    
-    /**
-    * @generated
-    */
     private UserType userType;
     
     
-    
-
-    /**
-    * @generated
-    */
     public int getID() {
         return this.ID;
     }
-    
-    /**
-    * @generated
-    */
     public int setID(Integer ID) {
         this.ID = ID;
     }
