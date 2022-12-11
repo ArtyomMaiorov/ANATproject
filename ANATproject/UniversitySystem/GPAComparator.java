@@ -1,26 +1,6 @@
 package ANAT;
-
-
-/**
-* @generated
-*/
 public class GPAComparator implements Comparator<Student> {
-    
-    
-    
-
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int compare() {
-        //TODO
-        return 0;
-    }
-    
-    
+	public int compare(Student o1, Student o2) {
+		return o1.GPA.compareTo(o2.GPA);
+     }   
 }
