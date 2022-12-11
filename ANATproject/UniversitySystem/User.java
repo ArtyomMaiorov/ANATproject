@@ -1,45 +1,29 @@
 package ANAT;
 public abstract class User implements Serializable, Comparable, CanBeResearcher {
-    private int ID;
-    private String name;
-    private String email;
-    private String address;
+    private String ID;    
     private String firstName;
     private String lastName;
     private String middleName;
     private String birthDate;
-    private Gender gender;
-    private String maritalStatus;
-    private String nationality;
+    private Gender gender; 
     private String citizenship;
+    private String email;
     private String login;
     private String password;
     private UserType userType;
     
     //getter/setter
-    public int getID() {
+    public String getID() {
 		return ID;
 	}
-	public void setID(int iD) {
-		ID = iD;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -71,18 +55,6 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-	public String getMaritalStatus() {
-		return maritalStatus;
-	}
-	public void setMaritalStatus(String maritalStatus) {
-		this.maritalStatus = maritalStatus;
-	}
-	public String getNationality() {
-		return nationality;
-	}
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
 	public String getCitizenship() {
 		return citizenship;
 	}
@@ -108,20 +80,17 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
 		this.userType = userType;
 	}
     //constructor
-	public User(int ID, String name, String email, String address, String id2, String firstName, String lastName,
-			String middleName, String birthDate, Gender gender, String maritalStatus, String nationality,
-			String citizenship, String eMail2, String login, String password, UserType userType) {
+	public User() {}
+	public User(String ID,String firstName,String lastName,String middleName,
+			 String birthDate,Gender gender,String citizenship,String email, 
+			 String login, String password, UserType userType) {
 		this.ID = ID;
-		this.name = name;
 		this.email = email;
-		this.address = address;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.middleName = middleName;
 		this.birthDate = birthDate;
 		this.gender = gender;
-		this.maritalStatus = maritalStatus;
-		this.nationality = nationality;
 		this.citizenship = citizenship;
 		this.login = login;
 		this.password = password;
@@ -130,15 +99,25 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
     //                          Operations                                  
     
     public String login() {
-        //TODO
-        return "";
-    }
-    public boolean changePassword() {
-        //TODO
-        return false;
+        if(login.equals(this.login) && password.equals(this.password)) {
+            return 'Succesfully login';
+        }
+        return 'Try again!Wrong answer or password';
     }
     
-    
+    public void logout() {}
+    public void showInterface() {}
+    public boolean changePassword(String oldPassword, String newPassword) {
+        if(oldPassword.equals(this.password)) {
+            password = newPassword;
+            return true;
+        }return false;
+    }
+    public void viewNews() {
+    	System.out.prinlt(News.getNewsTitle());
+    	System.out.prinlt(News.getNewsContent());
+    }
+    public void addLog() {}
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -147,95 +126,15 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (ID != other.ID)
-			return false;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (birthDate == null) {
-			if (other.birthDate != null)
-				return false;
-		} else if (!birthDate.equals(other.birthDate))
-			return false;
-		if (citizenship == null) {
-			if (other.citizenship != null)
-				return false;
-		} else if (!citizenship.equals(other.citizenship))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (maritalStatus == null) {
-			if (other.maritalStatus != null)
-				return false;
-		} else if (!maritalStatus.equals(other.maritalStatus))
-			return false;
-		if (middleName == null) {
-			if (other.middleName != null)
-				return false;
-		} else if (!middleName.equals(other.middleName))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (nationality == null) {
-			if (other.nationality != null)
-				return false;
-		} else if (!nationality.equals(other.nationality))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		return true;
+		return ID.equals(other.ID) && gender.equals(other.gender)&& userType.equals(other.userType)&& address.equals(other.address) && birthDate.equals(other.birthDate) && citizenship.equals(other.citizenship) && email.equals(other.email) && firstName.equals(other.firstName) && lastName.equals(other.lastName)  && login.equals(other.login) && maritalStatus.equals(other.maritalStatus) && middleName.equals(other.middleName)&& nationality.equals(other.nationality) &&  password.equals(other.password);
 	}
-	
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ID;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((birthDate == null) ? 0 : birthDate.hashCode());
-		result = prime * result + ((citizenship == null) ? 0 : citizenship.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((maritalStatus == null) ? 0 : maritalStatus.hashCode());
-		result = prime * result + ((middleName == null) ? 0 : middleName.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((nationality == null) ? 0 : nationality.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		return result;
-	}
-    
+   public int hashCode() {
+        return Objects.hash(ID, firstName, lastName ,middleName ,birthDate, gender,citizenship, email,login, password, userType);
+    }
 	public String toString() {
-		return "User [ID=" + ID + ", name=" + name + ", email=" + email + ", address=" + address + ", firstName="
+		return "User [ID=" + ID + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", middleName=" + middleName + ", birthDate=" + birthDate
-				+ ", maritalStatus=" + maritalStatus + ", nationality=" + nationality + ", citizenship="
-				+ citizenship + ", login=" + login + ", password=" + password + "]";
+				+ ", gender=" + gender + ", citizenship="+ citizenship + ", email=" + email + ", login=" + login + ", password=" + password + "]";
 	}
     
     
