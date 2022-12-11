@@ -105,8 +105,8 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
         return 'Try again!Wrong answer or password';
     }
     
-    public void logout() {}
-    public void showInterface() {}
+    public void logout(//TODO) {}
+    public void showInterface(//TODO) {}
     public boolean changePassword(String oldPassword, String newPassword) {
         if(oldPassword.equals(this.password)) {
             password = newPassword;
@@ -117,7 +117,7 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
     	System.out.prinlt(News.getNewsTitle());
     	System.out.prinlt(News.getNewsContent());
     }
-    public void addLog() {}
+    public void addLog(//TODO) {}
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
