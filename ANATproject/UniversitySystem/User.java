@@ -16,7 +16,7 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
     private String password;
     private UserType userType;
     
-    //getter setter
+    //getter/setter
     public int getID() {
 		return ID;
 	}
