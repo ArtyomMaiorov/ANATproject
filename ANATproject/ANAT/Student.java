@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Student extends User implements Comparator<Student>, CanBeResearcher {
+public class Student extends User implements CanBeResearcher {
     private String entranceYear;
     private Faculty faculty;
     private double GPA; 
@@ -41,43 +41,43 @@ public class Student extends User implements Comparator<Student>, CanBeResearche
     }
     
   //getter/setter
-    private String getEntranceYear() {
+    public String getEntranceYear() {
         return this.entranceYear;
     }
-    private void setEntranceYear(String entranceYear) {
+    public void setEntranceYear(String entranceYear) {
         this.entranceYear = entranceYear;
     }
-    private Faculty getFaculty() {
+    public Faculty getFaculty() {
         return this.faculty;
     }
-    private void setFaculty(Faculty faculty) {
+    public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
-    private double getGPA() {
+    public double getGPA() {
         return this.GPA;
     }
-    private void setGPA(double GPA) {
+    public void setGPA(double GPA) {
         this.GPA = GPA;
     }
-    private Vector getCourses() {
+    public Vector getCourses() {
         return this.courses;
     }
-    private void setCourses(Vector courses) {
+    public void setCourses(Vector courses) {
         this.courses = courses;
     }
-    private Major getMajor() {
+    public Major getMajor() {
         return this.major;
     }
-    private void setMajor(Major major) {
+    public void setMajor(Major major) {
         this.major = major;
     }
-    private int getCreditLimit() {
+    public int getCreditLimit() {
         return this.creditLimit;
     }
-    private Degree getDegree() {
+    public Degree getDegree() {
         return this.degree;
     }
-    private void setDegree(Degree degree) {
+    public void setDegree(Degree degree) {
         this.degree = degree;
     }
     //                          Operations                                  
@@ -175,16 +175,8 @@ public class Student extends User implements Comparator<Student>, CanBeResearche
     	  }
       }
 
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
-	@Override
-	public int compare(Student o1, Student o2) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
     
 }

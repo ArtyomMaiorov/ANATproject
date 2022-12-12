@@ -25,7 +25,7 @@ public class UserFactory {
     /**
     * @generated
     */
-    public Admin setAdmin(Admin admin) {
+    public void setAdmin(Admin admin) {
         this.admin = admin;
     }
     
