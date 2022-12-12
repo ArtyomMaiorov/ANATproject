@@ -1,8 +1,7 @@
 package ANAT;
 
 import java.util.Scanner;
-
-public abstract class User implements Serializable, Comparable, CanBeResearcher {
+public class User implements Serializable, Comparable, CanBeResearcher {
     private String ID;    
     private String firstName;
     private String lastName;
@@ -134,9 +133,7 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
     	System.out.prinlt(News.getNewsContent());
     }
     
-    public void addLog(//TODO) {
-    
-    }  
+    public void addLog(//TODO) {} 
     
     public void showInterface() {
   	  while(true) {
@@ -168,6 +165,7 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
         	  if(n==4) {this.viewNews();}
           }
   	  }
+    }
     
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -193,5 +191,4 @@ public abstract class User implements Serializable, Comparable, CanBeResearcher 
 				+ firstName + ", lastName=" + lastName + ", middleName=" + middleName + ", birthDate=" + birthDate
 				+ ", gender=" + gender + ", citizenship="+ citizenship + ", email=" + email + ", login=" + login + ", password=" + password + "]";
 	}
-     
 }
