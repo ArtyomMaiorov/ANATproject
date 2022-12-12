@@ -1,92 +1,33 @@
 package ANAT;
-
-
-/**
-* @generated
-*/
+import java.util.*;
 public class Database {
-    
-    /**
-    * @generated
-    */
+	
     private TreeSet users;
-    
-    /**
-    * @generated
-    */
+
     private TreeSet students;
-    
-    /**
-    * @generated
-    */
+
     private TreeSet teachers;
-    
-    /**
-    * @generated
-    */
+
     private HashSet admins;
-    
-    /**
-    * @generated
-    */
+
     private TreeSet managers;
-    
-    /**
-    * @generated
-    */
+
     private HashSet courses;
-    
-    /**
-    * @generated
-    */
+
     private MultiMap books;
-    
-    /**
-    * @generated
-    */
-    private  attribute;
-    
-    /**
-    * @generated
-    */
+
     private MultiMap logFiles;
     
-    
-    /**
-    * @generated
-    */
-    private Librarian librarian;
-    
-    /**
-    * @generated
-    */
-    private Admin admin;
-    
-    /**
-    * @generated
-    */
-    private Manager manager;
-    
-    /**
-    * @generated
-    */
-    private Mark mark;
-    
-    /**
-    * @generated
-    */
-    private Mark mark;
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    
+    private Vector<News> newsWall;
+    private Vector<Message> requests;
+    private MultiMap<Employee,Message> messages;
 
-    /**
-    * @generated
-    */
+    
+    public Vector getRequests() {
+    	return this.requests;
+    }
+    
+    
     private TreeSet getUsers() {
         return this.users;
     }
@@ -309,7 +250,9 @@ public class Database {
         this.student = student;
     }
     
-    
+    public Vector getNewsWall() {
+    	return this.newsWall;
+    }
     
 
     //                          Operations                                  

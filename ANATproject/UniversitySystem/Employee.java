@@ -142,5 +142,8 @@ public class Employee extends User {
         return null;
     }
     
+    public String toString() {
+		return ID + " " + firstName + " " + lastName + " " + middleName + " ";
+	}
     
 }

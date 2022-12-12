@@ -1,200 +1,125 @@
 package ANAT;
 
-
-/**
-* @generated
-*/
 public class Manager extends Employee implements CanBeResearcher {
-    
-    /**
-    * @generated
-    */
-    private ManagerType managerType;
-    
-    
-    /**
-    * @generated
-    */
-    private Admin admin;
-    
-    /**
-    * @generated
-    */
-    private News news;
-    
-    /**
-    * @generated
-    */
-    private Database database;
-    
-    /**
-    * @generated
-    */
-    private Transcript transcript;
-    
-    /**
-    * @generated
-    */
-    private Organization organization;
-    
-    
 
-    /**
-    * @generated
-    */
+    private ManagerType managerType;   
+    private Admin admin;    
+    private Database database;
+    private Transcript transcript;   
+    private Organization organization;  
+    
+    //Getters and Setters
     private ManagerType getManagerType() {
         return this.managerType;
     }
-    
-    /**
-    * @generated
-    */
+   
     private ManagerType setManagerType(ManagerType managerType) {
         this.managerType = managerType;
     }
     
-    
-    
-    /**
-    * @generated
-    */
     public News getNews() {
         return this.news;
     }
     
-    /**
-    * @generated
-    */
     public News setNews(News news) {
         this.news = news;
     }
-    
-    
-    /**
-    * @generated
-    */
+     
     public Transcript getTranscript() {
         return this.transcript;
     }
     
-    /**
-    * @generated
-    */
     public Transcript setTranscript(Transcript transcript) {
         this.transcript = transcript;
     }
     
-    
-    /**
-    * @generated
-    */
     public Admin getAdmin() {
         return this.admin;
     }
-    
-    /**
-    * @generated
-    */
+
     public Admin setAdmin(Admin admin) {
         this.admin = admin;
     }
     
     
-    /**
-    * @generated
-    */
     public Database getDatabase() {
         return this.database;
     }
     
-    /**
-    * @generated
-    */
     public Database setDatabase(Database database) {
         this.database = database;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public Organization getOrganization() {
         return this.organization;
     }
     
-    /**
-    * @generated
-    */
+
     public Organization setOrganization(Organization organization) {
         this.organization = organization;
     }
     
-    
-    
+    // End of getters and setters
 
-    //                          Operations                                  
     
-    /**
-    * @generated
-    */
     public String managerNews() {
-        //TODO
+        
         return "";
     }
-    
-    /**
-    * @generated
-    */
-    public User viewInfo() {
-        //TODO
-        return null;
+    private void addNews(String title,String content) {
+    	News article = new News(title,content);
+    	database.getNewsWall().add(article);
     }
     
-    /**
-    * @generated
-    */
+    private void deleteNews(int newsID) {
+    	Vector<News> wall = database.getNewsWall();
+    	for(int i=0;i<wall.size();i++) {
+    		if(wall.get(i).getID() == newsID) {
+    			wall.remove(i);
+    			return;
+    		}
+    	}
+    }
+
+    public String viewInfo(User user) {
+        return user.toString();
+    }
+
     public String viewRequests() {
-        //TODO
-        return "";
+        Vector<Message> requests = database.getRequests();
+        String result = "";
+        for(int i=0;i<requests.size();i++) {
+        	result += requests.get(i).getSender().toString() + " |  " + requests.get(i).getContent + "\n";
+        }
+        return result;
     }
     
-    /**
-    * @generated
-    */
+    
     public boolean assignCourses() {
         //TODO
         return false;
     }
     
-    /**
-    * @generated
-    */
+    
     public String statisticalReport() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
+ 
     public boolean approveStudentRegistration() {
         //TODO
         return false;
     }
     
-    /**
-    * @generated
-    */
+
     public String toString() {
-        //TODO
-        return "";
+        return "Manager's type: " + managerType.toString()+"\n";
     }
     
-    /**
-    * @generated
-    */
+
     public Vector generateStudentsList() {
-        //TODO
+    	
         return null;
     }
     

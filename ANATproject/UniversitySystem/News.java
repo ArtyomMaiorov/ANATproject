@@ -1,74 +1,39 @@
 package ANAT;
 
-
-/**
-* @generated
-*/
 public class News {
-    
-    /**
-    * @generated
-    */
+	
+	private int newsID;
+	private static int cnt;
+	
     private String newsTitle;
-    
-    /**
-    * @generated
-    */
     private String newsContent;
     
-    
-    /**
-    * @generated
-    */
-    private Manager manager;
-    
-    
-
-    /**
-    * @generated
-    */
-    private String getNewsTitle() {
-        return this.newsTitle;
+    {
+    	this.newsID = cnt++;
     }
     
-    /**
-    * @generated
-    */
-    private String setNewsTitle(String newsTitle) {
+    public News(Stirng title,String content) {
+    	this.newsContent = content;
+    	this.newsTitle = title;
+    }
+    
+    public int getID() {
+    	return newsID;
+    }
+    public String getNewsTitle() {
+        return this.newsTitle;
+    }
+
+    public String setNewsTitle(String newsTitle) {
         this.newsTitle = newsTitle;
     }
     
-    
-    /**
-    * @generated
-    */
-    private String getNewsContent() {
+    public String getNewsContent() {
         return this.newsContent;
     }
-    
-    /**
-    * @generated
-    */
-    private String setNewsContent(String newsContent) {
+
+    public String setNewsContent(String newsContent) {
         this.newsContent = newsContent;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Manager getManager() {
-        return this.manager;
-    }
-    
-    /**
-    * @generated
-    */
-    public Manager setManager(Manager manager) {
-        this.manager = manager;
-    }
-    
-    
     
 }
