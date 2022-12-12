@@ -1,4 +1,4 @@
-package uml;
+package ANAT;
 
 public enum LessonType {
 	LECTURE,

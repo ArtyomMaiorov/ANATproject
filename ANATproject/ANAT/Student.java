@@ -1,6 +1,9 @@
 package ANAT;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Student extends User implements Comparator<Student>, CanBeResearcher {
     private String entranceYear;
@@ -10,36 +13,62 @@ public class Student extends User implements Comparator<Student>, CanBeResearche
     private Major major;
     private final static int creditLimit = 21;
     private Degree degree;
-   
+    
+    public Student() throws IOException {
+    	super();
+    	InputStreamReader r = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(r);
+		System.out.println("Enter student's entrance year");
+		this.entranceYear= br.readLine();
+		System.out.println("Enter student's faculty");
+		try {
+			this.faculty = Faculty.valueOf(br.readLine());	
+		} catch (Exception e) {
+			System.out.println("Wrong faculty");
+		}
+		System.out.println("Enter student's degree");
+		try {
+			this.degree = Degree.valueOf(br.readLine());	
+		} catch (Exception e) {
+			System.out.println("Wrong degree");
+		}
+		System.out.println("Enter student's major");
+		try {
+			this.major = Major.valueOf(br.readLine());	
+		} catch (Exception e) {
+			System.out.println("Wrong major");
+		}
+    }
+    
   //getter/setter
     private String getEntranceYear() {
         return this.entranceYear;
     }
-    private String setEntranceYear(String entranceYear) {
+    private void setEntranceYear(String entranceYear) {
         this.entranceYear = entranceYear;
     }
     private Faculty getFaculty() {
         return this.faculty;
     }
-    private Faculty setFaculty(Faculty faculty) {
+    private void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
     private double getGPA() {
         return this.GPA;
     }
-    private double setGPA(Real GPA) {
+    private void setGPA(double GPA) {
         this.GPA = GPA;
     }
     private Vector getCourses() {
         return this.courses;
     }
-    private Vector setCourses(Vector courses) {
+    private void setCourses(Vector courses) {
         this.courses = courses;
     }
     private Major getMajor() {
         return this.major;
     }
-    private Major setMajor(Major major) {
+    private void setMajor(Major major) {
         this.major = major;
     }
     private int getCreditLimit() {
@@ -48,7 +77,7 @@ public class Student extends User implements Comparator<Student>, CanBeResearche
     private Degree getDegree() {
         return this.degree;
     }
-    private Degree setDegree(Degree degree) {
+    private void setDegree(Degree degree) {
         this.degree = degree;
     }
     //                          Operations                                  
@@ -116,7 +145,7 @@ public class Student extends User implements Comparator<Student>, CanBeResearche
     }
     
     public void showInterface() {
-    	 super.showInterface();
+    	 super.showBasicInterface();
     	 while(true) {
             System.out.println("Enter number(S to stop choosing) (Student): ");
             System.out.println("1.register To Course");
@@ -145,5 +174,17 @@ public class Student extends User implements Comparator<Student>, CanBeResearche
             }
     	  }
       }
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int compare(Student o1, Student o2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }
