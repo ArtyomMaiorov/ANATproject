@@ -3,7 +3,11 @@ package ANAT;
 import java.util.Scanner;
 
 public class Admin extends User {
-    private UserFactory userFactory;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private UserFactory userFactory;
     private Manager manager;
     private Database database;
     
@@ -27,10 +31,8 @@ public class Admin extends User {
         this.database = database;
     }
     
-    public Admin(String ID,String firstName,String lastName,String middleName,
-			 String birthDate,Gender gender,String citizenship,String email, 
-			 String login, String password, UserType userType) {
-    	super(ID,firstName,lastName,middleName,birthDate,gender,citizenship,email, login, password, userType);
+    public Admin() {
+    	super();
     }
     
     //                          Operations                                  
@@ -56,7 +58,7 @@ public class Admin extends User {
             System.out.println("1.add User");
             System.out.println("2.update User");
             System.out.println("3.delete User");
-            System.out.println("4.View LogFiles);
+            System.out.println("4.View LogFiles");
             Scanner input = new Scanner(System.in);
             String s = input.next();
             if(s.equals("S")) {
@@ -65,10 +67,10 @@ public class Admin extends User {
             else 
             {
           	  if(n==1) {
-          		   System.out.println('ID:');
+          		   System.out.println("ID:");
           		   Scanner input = new Scanner(System.in);
                    String ID = input.next();
-                   System.out.println('firstName:');
+                   System.out.println("firstName:");
                    Scanner input = new Scanner(System.in);
                    String firstName = input.next();
                    System.out.println('lastName:');
