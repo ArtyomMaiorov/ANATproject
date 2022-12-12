@@ -1,7 +1,6 @@
 package ANAT;
-
 import java.util.Scanner;
-public class User implements Serializable, Comparable, CanBeResearcher {
+public abstract class User implements Serializable, Comparable, CanBeResearcher {
     private String ID;    
     private String firstName;
     private String lastName;
@@ -117,9 +116,9 @@ public class User implements Serializable, Comparable, CanBeResearcher {
     public void logout() {
     	if(logStatus) {
     		logStatus = false;
-    		System.out.prinlt('Succesfully logout');
+    		System.out.println('Succesfully logout');
     	}
-    	else System.out.prinlt('You need to login,then you can logout!');	
+    	else System.out.println('You need to login,then you can logout!');	
     }
   	  
     public boolean changePassword(String oldPassword, String newPassword) {
@@ -137,11 +136,11 @@ public class User implements Serializable, Comparable, CanBeResearcher {
     
     public void showInterface() {
   	  while(true) {
-          System.out.print("Enter number(S to stop choosing): ");
-          System.out.print("1.Login");
-          System.out.print("2.Logout");
-          System.out.print("3.Change Password");
-          System.out.print("4.View News");
+          System.out.println("Enter number(S to stop choosing)(User): ");
+          System.out.println("1.Login");
+          System.out.println("2.Logout");
+          System.out.println("3.Change Password");
+          System.out.println("4.View News");
           Scanner input = new Scanner(System.in);
           String s = input.next();
           if(s.equals("S")) {
@@ -152,15 +151,15 @@ public class User implements Serializable, Comparable, CanBeResearcher {
         	  if(n==1) {this.login()}
         	  if(n==2) {this.logout();}
         	  if(n==3) {
-        		  System.out.print('Enter old Password  to change');
+        		  System.out.println('Enter old Password  to change');
         		  Scanner input = new Scanner(System.in);
                   String oldPassword = input.next();
-        		  System.out.print('Enter new Password  to change');
+        		  System.out.println('Enter new Password  to change');
         		  Scanner input = new Scanner(System.in);
                   String newPassword = input.next();
         		  if(this.changePassword(oldPassword,newPassword)) 
-        			  System.out.print('Succesfully changed');
-        		  else System.out.print('Try again!Wrong old password');
+        			  System.out.println('Succesfully changed');
+        		  else System.out.println('Try again!Wrong old password');
         	  }
         	  if(n==4) {this.viewNews();}
           }

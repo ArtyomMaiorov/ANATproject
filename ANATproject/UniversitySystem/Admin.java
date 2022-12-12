@@ -3,7 +3,6 @@ package ANAT;
 import java.util.Scanner;
 
 public class Admin extends User {
-	
     private UserFactory userFactory;
     private Manager manager;
     private Database database;
@@ -53,11 +52,11 @@ public class Admin extends User {
     
     public void showInterface() {
     	  while(true) {
-            System.out.print("Enter number(S to stop choosing): ");
-            System.out.print("1.add User");
-            System.out.print("2.update User");
-            System.out.print("3.delete User");
-            System.out.print("4.View LogFiles);
+            System.out.println("Enter number(S to stop choosing): ");
+            System.out.println("1.add User");
+            System.out.println("2.update User");
+            System.out.println("3.delete User");
+            System.out.println("4.View LogFiles);
             Scanner input = new Scanner(System.in);
             String s = input.next();
             if(s.equals("S")) {
@@ -66,29 +65,39 @@ public class Admin extends User {
             else 
             {
           	  if(n==1) {
-          		   System.out.print('ID:');
+          		   System.out.println('ID:');
           		   Scanner input = new Scanner(System.in);
                    String ID = input.next();
+                   System.out.println('firstName:');
                    Scanner input = new Scanner(System.in);
                    String firstName = input.next();
+                   System.out.println('lastName:');
                    Scanner input = new Scanner(System.in);
                    String lastName = input.next();
+                   System.out.println('middleName:');
                    Scanner input = new Scanner(System.in);
                    String middleName = input.next();
+                   System.out.println('birthDate:');
                    Scanner input = new Scanner(System.in);
-                   String s = input.next();
+                   String birthDate = input.next();
+                   System.out.println('gender:');
                    Scanner input = new Scanner(System.in);
-                   String s = input.next();
+                   Gender gender = input.next();
+                   System.out.println('citizenship:');
                    Scanner input = new Scanner(System.in);
-                   String s = input.next();
+                   String citizenship = input.next();
+                   System.out.println('email:');
                    Scanner input = new Scanner(System.in);
-                   String s = input.next();
+                   String email = input.next();
+                   System.out.println('login:');
                    Scanner input = new Scanner(System.in);
-                   String s = input.next();
+                   String login = input.next();
+                   System.out.println('password:');
                    Scanner input = new Scanner(System.in);
-                   String s = input.next();
+                   String password = input.next();
+                   System.out.println('userType:');
                    Scanner input = new Scanner(System.in);
-                   String s = input.next();
+                   UserType userType = input.next();
           		  User user = new User(ID,firstName,lastName,middleName,birthDate,gender,citizenship,email, login, password, userType);
           		  this.addUser(user);}
           	  if(n==2) {this.updateUser(user);}
