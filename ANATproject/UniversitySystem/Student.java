@@ -19,7 +19,8 @@ public class Student extends User implements Comparator<Student>, CanBeResearche
     /**
     * @generated
     */
-    private double GPA;
+    private double 
+;
     
     /**
     * @generated
