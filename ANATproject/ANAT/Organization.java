@@ -35,7 +35,6 @@ public class Organization {
         this.head = head;
     }
     
-
     //                          Operations 
     
     public void addMembers(Student student) {
