@@ -1,118 +1,54 @@
 package ANAT;
 
+import java.util.Vector;
 
-/**
-* @generated
-*/
 public class Organization {
-    
-    /**
-    * @generated
-    */
+	
     private String nameOrganization;
-    
-    /**
-    * @generated
-    */
     private Student head;
     
-    /**
-    * @generated
-    */
-    private Student members;
     
+    Vector<Student> members;
+    {
+        members = new Vector<Student>();
+    }
     
-    /**
-    * @generated
-    */
-    private Manager manager;
+    public Organization() {}
     
-    /**
-    * @generated
-    */
-    private Student student;
+    public Organization(String name) {
+    	this.nameOrganization = name;
+    }
     
-    
-
-    /**
-    * @generated
-    */
     private String getNameOrganization() {
         return this.nameOrganization;
     }
-    
-    /**
-    * @generated
-    */
+   
     private String setNameOrganization(String nameOrganization) {
         this.nameOrganization = nameOrganization;
     }
     
-    
-    /**
-    * @generated
-    */
     private Student getHead() {
         return this.head;
     }
     
-    /**
-    * @generated
-    */
     private Student setHead(Student head) {
         this.head = head;
     }
     
-    
-    /**
-    * @generated
-    */
-    private Student getMembers() {
-        return this.members;
-    }
-    
-    /**
-    * @generated
-    */
-    private Student setMembers(Student members) {
-        this.members = members;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Manager getManager() {
-        return this.manager;
-    }
-    
-    /**
-    * @generated
-    */
-    public Manager setManager(Manager manager) {
-        this.manager = manager;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    
 
-    //                          Operations                                  
+    //                          Operations 
     
+    public void addMembers(Student student) {
+    	members.add(student);
+    }
     
+    public void showMembers() {
+      for(int i = 0; i < members.size(); i++) {
+        System.out.println(members.get(i).toString());
+      }
+    }
+    public String toString() {
+    	return nameOrganization;
+    }
+
 }
