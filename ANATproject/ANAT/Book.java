@@ -1,10 +1,11 @@
 package ANAT;
 
+import java.util.Date;
 
 /**
 * @generated
 */
-public class Book extends DatabaseLibrarian {
+public class Book{
     
     /**
     * @generated
@@ -41,18 +42,6 @@ public class Book extends DatabaseLibrarian {
     */
     private Date dateToBeReturned;
     
-    
-    /**
-    * @generated
-    */
-    private Librarian librarian;
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    
 
     /**
     * @generated
@@ -64,7 +53,7 @@ public class Book extends DatabaseLibrarian {
     /**
     * @generated
     */
-    private int setId(Integer id) {
+    private void setId(Integer id) {
         this.id = id;
     }
     
@@ -79,7 +68,7 @@ public class Book extends DatabaseLibrarian {
     /**
     * @generated
     */
-    private String setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
     
@@ -94,7 +83,7 @@ public class Book extends DatabaseLibrarian {
     /**
     * @generated
     */
-    private String setAuthor(String author) {
+    private void setAuthor(String author) {
         this.author = author;
     }
     
@@ -109,7 +98,7 @@ public class Book extends DatabaseLibrarian {
     /**
     * @generated
     */
-    private User setOwnedBy(User ownedBy) {
+    private void setOwnedBy(User ownedBy) {
         this.ownedBy = ownedBy;
     }
     
@@ -124,7 +113,7 @@ public class Book extends DatabaseLibrarian {
     /**
     * @generated
     */
-    private int setBookNum(Integer bookNum) {
+    private void setBookNum(Integer bookNum) {
         this.bookNum = bookNum;
     }
     
@@ -139,7 +128,7 @@ public class Book extends DatabaseLibrarian {
     /**
     * @generated
     */
-    private Date setDateOfPurchase(Date dateOfPurchase) {
+    private void setDateOfPurchase(Date dateOfPurchase) {
         this.dateOfPurchase = dateOfPurchase;
     }
     
@@ -154,41 +143,7 @@ public class Book extends DatabaseLibrarian {
     /**
     * @generated
     */
-    private Date setDateToBeReturned(Date dateToBeReturned) {
+    private void setDateToBeReturned(Date dateToBeReturned) {
         this.dateToBeReturned = dateToBeReturned;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Librarian getLibrarian() {
-        return this.librarian;
-    }
-    
-    /**
-    * @generated
-    */
-    public Librarian setLibrarian(Librarian librarian) {
-        this.librarian = librarian;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    
+    }  
 }

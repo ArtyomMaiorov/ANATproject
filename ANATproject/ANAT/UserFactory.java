@@ -1,10 +1,12 @@
 package ANAT;
 
+import java.io.IOException;
+import java.util.Vector;
 
 public class UserFactory {
 	
 	private Database database;
-	public User createUser(UserType user) {
+	public User createUser(UserType user) throws IOException {
 		
 		if(user == null)return null;
 		
@@ -21,7 +23,7 @@ public class UserFactory {
 		return null;
 	}
 	
-    public int createUsers(Vector<UserType> list) {
+    public void createUsers(Vector<UserType> list) throws IOException {
 		
 		for(int i=0;i<list.size();i++) {
 			database.addUser(createUser(list.get(i)));
