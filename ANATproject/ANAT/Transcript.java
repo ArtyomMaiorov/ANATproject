@@ -1,13 +1,8 @@
 package ANAT;
 
-/**
-* @generated
-*/
+
 public class Transcript {
  
-    /**
-    * @generated
-    */
     private String firstName;
     
     private String studentSurname;

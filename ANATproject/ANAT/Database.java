@@ -14,11 +14,11 @@ public class Database implements Serializable{
     private HashSet courses;
     private MultiMap books;
     private MultiMap logFiles; 
-    private Vector<News> newsWall;
-    private Vector<Message> requests;
-    private HashTable<Integer, LinkedList<Message>> messages;
     
-    
+    private Vector<News> newsWall;//we can add/delete/update news and show them
+    private Vector<Message> requests; //managers will be able to get all requests
+    private HashTable<Integer, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
+     
     {
     	students = new TreeSet<Student>();
     	messages = new HashTable<int, LinkedList<Message>>();
@@ -40,11 +40,14 @@ public class Database implements Serializable{
     
     //                          Operations  
     
+    
     public void addMessage(int employeeID,Message message) {
+    	//employeeID is receiver
     	messages.get(employeeID).offer(message);
     }
     
     public LinkedList<Message> getMessages(int employeeID) {
+    	//employeeID is
     	return messages.get(employeeID);
     }
     
