@@ -15,6 +15,7 @@ public class Organization {
     	  members = new Vector<Student>();
     }
     
+    
     private String getNameOrganization() {
         return this.nameOrganization;
     }
