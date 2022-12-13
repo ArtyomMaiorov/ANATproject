@@ -7,13 +7,68 @@ package ANAT;
 public class Librarian extends Employee {
     
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    * @generated
+    */
+    private Librarian tittle;
+    //dfvrfrveefefefefefefefefefefefefe
+    
+    /**
+    * @generated
+    */
+    private Database database;
+    
+    /**
+    * @generated
+    */
+    private Book book;
     
     
 
-
+    /**
+    * @generated
+    */
+    private Librarian getTittle() {
+        return this.tittle;
+    }
+    
+    /**
+    * @generated
+    */
+    private Librarian setTittle(Librarian tittle) {
+        this.tittle = tittle;
+    }
+    
+    
+    
+    /**
+    * @generated
+    */
+    public Book getBook() {
+        return this.book;
+    }
+    
+    /**
+    * @generated
+    */
+    public Book setBook(Book book) {
+        this.book = book;
+    }
+    
+    
+    /**
+    * @generated
+    */
+    public Database getDatabase() {
+        return this.database;
+    }
+    
+    /**
+    * @generated
+    */
+    public Database setDatabase(Database database) {
+        this.database = database;
+    }
+    
     
     
 
@@ -34,4 +89,22 @@ public class Librarian extends Employee {
         //TODO
         return false;
     }
+    
+    /**
+    * @generated
+    */
+    public boolean checkID(ID)() {
+        //TODO
+        return false;
+    }
+    
+    /**
+    * @generated
+    */
+    public boolean checkID() {
+        //TODO
+        return false;
+    }
+    
+    
 }

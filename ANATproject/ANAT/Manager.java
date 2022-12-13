@@ -1,8 +1,11 @@
 package ANAT;
 
+<<<<<<< master
 import java.util.HashSet;
 import java.util.Vector;
 
+=======
+>>>>>>> b851629 ..
 public class Manager extends Employee implements CanBeResearcher {
 
     private ManagerType managerType;       
@@ -17,10 +20,20 @@ public class Manager extends Employee implements CanBeResearcher {
         return this.managerType;
     }
    
-    private void setManagerType(ManagerType managerType) {
+    private ManagerType setManagerType(ManagerType managerType) {
         this.managerType = managerType;
     }
     
+<<<<<<< master
+=======
+    public News getNews() {
+        return this.news;
+    }
+    
+    public News setNews(News news) {
+        this.news = news;
+    }
+>>>>>>> b851629 ..
      
     public Transcript getTranscript() {
         return this.transcript;
