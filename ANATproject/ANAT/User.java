@@ -92,8 +92,8 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 	}
     //constructor
 	public User() throws IOException {
-		InputStreamReader r = new InputStreamReader(System.in);
-		BufferedReader br = new BufferedReader(r);
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter user's ID");
 		this.ID = br.readLine();
 		System.out.println("Enter user's email");

@@ -3,9 +3,7 @@ package ANAT;
 import java.util.*;
 
 public class Admin extends User {
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 1L;
 	private UserFactory userFactory;
     private Manager manager;
