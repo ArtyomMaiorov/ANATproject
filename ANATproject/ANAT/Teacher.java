@@ -53,7 +53,7 @@ public class Teacher extends Employee  {
     */
     private void setRating(double rating) {
         this.rating = rating;
-    
+    }
     
     
 
