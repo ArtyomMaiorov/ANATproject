@@ -2,6 +2,7 @@ package ANAT;
 
 import java.util.*;
 import java.io.*;
+import java.nio.charset.Charset;
 public class Database implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -12,16 +13,16 @@ public class Database implements Serializable{
     private TreeSet managers;  
     private TreeSet librarians;
     private HashSet courses;
-    private MultiMap books;
-    private MultiMap logFiles; 
+    private HashMap<Book, Student> books;
+//    private MultiMap logFiles; 
     private Vector<News> newsWall;
     private Vector<Message> requests;
-    private HashTable<int, LinkedList<Message>> messages;
+//    private HashTable<int id, LinkedList<Message>> messages;
     
     
     {
     	students = new TreeSet<Student>();
-    	messages = new HashTable<int, LinkedList<Message>>();
+//    	messages = new HashTable<int, LinkedList<Message>>();
     }
     
     
@@ -40,22 +41,22 @@ public class Database implements Serializable{
     
     //                          Operations  
     
-    public void addMessage(int employeeID,Message message) {
-    	messages.get(employeeID).offer(message);
-    }
-    
-    public LinkedList<Message> getMessages(int employeeID) {
-    	return messages.get(employeeID);
-    }
+//    public void addMessage(int employeeID,Message message) {
+//    	messages.get(employeeID).offer(message);
+//    }
+//    
+//    public LinkedList<Message> getMessages(int employeeID) {
+//    	return messages.get(employeeID);
+//    }
     
     public void addUser(User newUser) {
-    	UserType user == newUser.getUserType();
+    	UserType user = newUser.getUserType();
     	
-        if(user == UserType.STUDENT) setStudent(user);		
-        else if(user == UserType.TEACHER) setTeacher(user);		
-        else if(user == UserType.ADMIN) setAdmin(user);		
-        else if(user == UserType.MANAGER) setManager(user);
-		else if(user == UserType.LIBRARIAN) setLibrarian(user);
+        if(user == UserType.STUDENT) setStudent((Student) newUser);		
+        else if(user == UserType.TEACHER) setTeacher((Teacher) newUser);		
+        else if(user == UserType.ADMIN) setAdmin((Admin) newUser);		
+        else if(user == UserType.MANAGER) setManager((Manager) newUser);
+		else if(user == UserType.LIBRARIAN) setLibrarian((Librarian) newUser);
         
     }
     public void setStudent(Student student) {
@@ -129,30 +130,48 @@ public class Database implements Serializable{
     /**
     * @generated
     */
-    public MultiMap getAllBooks() {
-        //TODO
-        return null;
-    }
-    
-    public MultiMap getAllLogs() {
-        //TODO
-        return null;
-    }
+//    public MultiMap getAllBooks() {
+//        //TODO
+//        return null;
+//    }
+//    
+//    public MultiMap getAllLogs() {
+//        //TODO
+//        return null;
+//    }
     
     public void addStudent(Student s) {
     	students.add(s);
     }
-    
-    public void saveToFile() {
+    public void readFromFile(String filePath) {
+//    	FileInputStream fis = new FileInputStream(s);
+//    	InputStreamReader reader = new InputStreamReader(fis, Charset.forName("UTF_16"));
     	try {
-	        FileOutputStream fileOut = new FileOutputStream(new File("students.txt"));
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			String line;
+			while((line = br.readLine())!=null) {
+				System.out.println(line);
+			}
+    	} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    }
+    public void saveToFile() {
+    	System.out.println(this.toString());
+    	try {
+	        FileOutputStream fileOut = new FileOutputStream("students.txt", true);
 	        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-	        objectOut.writeObject(this);
+	        
+	        objectOut.writeUTF(this.toString());
 	        objectOut.close();
 	        System.out.println("The Object  was succesfully written to a file");
     	} catch(Exception e) {
     		e.printStackTrace();
     	}
+    }
+    public void addBook(Book book, Student student) {
+    	books.put(book, student);
     }
     public String toString() {
     	return Database.students.toString();

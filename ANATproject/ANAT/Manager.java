@@ -1,5 +1,7 @@
 package ANAT;
 
+import java.util.Vector;
+
 public class Manager extends Employee implements CanBeResearcher {
 
     private ManagerType managerType;       
@@ -14,7 +16,7 @@ public class Manager extends Employee implements CanBeResearcher {
         return this.managerType;
     }
    
-    private ManagerType setManagerType(ManagerType managerType) {
+    private void setManagerType(ManagerType managerType) {
         this.managerType = managerType;
     }
     
@@ -22,7 +24,7 @@ public class Manager extends Employee implements CanBeResearcher {
         return this.news;
     }
     
-    public News setNews(News news) {
+    public void setNews(News news) {
         this.news = news;
     }
      

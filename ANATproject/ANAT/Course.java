@@ -1,5 +1,7 @@
 package ANAT;
 
+import java.util.Objects;
+import java.util.Vector;
 
 /**
 * @generated
@@ -19,7 +21,7 @@ public class Course {
     /**
     * @generated
     */
-    private Vector instructors;
+    private Vector<Teacher> instructors;
     
     /**
     * @generated
@@ -29,30 +31,16 @@ public class Course {
     /**
     * @generated
     */
-    private Vector schedule;
+    private Vector<Lesson> schedule;
     
     
+  
+  
     /**
     * @generated
     */
-    private Teacher teacher;
-    
-    /**
-    * @generated
-    */
-    private Lesson lesson;
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    
+    private Vector<Student> students;
+   
 
     /**
     * @generated
@@ -64,7 +52,7 @@ public class Course {
     /**
     * @generated
     */
-    private String setNameOfCourse(String nameOfCourse) {
+    private void setNameOfCourse(String nameOfCourse) {
         this.nameOfCourse = nameOfCourse;
     }
     
@@ -79,7 +67,7 @@ public class Course {
     /**
     * @generated
     */
-    private String setCourseID(String courseID) {
+    private void setCourseID(String courseID) {
         this.courseID = courseID;
     }
     
@@ -87,14 +75,14 @@ public class Course {
     /**
     * @generated
     */
-    private Vector getInstructors() {
+    private Vector<Teacher> getInstructors() {
         return this.instructors;
     }
     
     /**
     * @generated
     */
-    private Vector setInstructors(Vector instructors) {
+    private void setInstructors(Vector<Teacher> instructors) {
         this.instructors = instructors;
     }
     
@@ -109,7 +97,7 @@ public class Course {
     /**
     * @generated
     */
-    private int setCredits(Integer credits) {
+    private void setCredits(Integer credits) {
         this.credits = credits;
     }
     
@@ -124,99 +112,61 @@ public class Course {
     /**
     * @generated
     */
-    private Vector setSchedule(Vector schedule) {
+    private void setSchedule(Vector schedule) {
         this.schedule = schedule;
-    }
-    
-    
+    }   
     
     /**
     * @generated
     */
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Teacher setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Lesson getLesson() {
-        return this.lesson;
+    public Vector<Student> getStudents() {
+        return this.students;
     }
     
     /**
     * @generated
     */
-    public Lesson setLesson(Lesson lesson) {
-        this.lesson = lesson;
+    public void setStudents(Vector<Student> student) {
+        this.students = students;
     }
     
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
     
     
     
 
     //                          Operations                                  
     
-    /**
-    * @generated
-    */
-    public String toString() {
-        //TODO
-        return "";
-    }
+
     
-    /**
-    * @generated
-    */
-    public String viewInstructors() {
-        //TODO
-        return "";
-    }
+   
+
+	@Override
+	public String toString() {
+		return "Course [nameOfCourse=" + nameOfCourse + ", courseID=" + courseID + ", instructors=" + instructors
+				+ ", credits=" + credits + ", schedule=" + schedule + ", students=" + students
+				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(courseID, credits, instructors, nameOfCourse, schedule, students);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Course other = (Course) obj;
+		return Objects.equals(courseID, other.courseID) && credits == other.credits
+				&& Objects.equals(instructors, other.instructors) && Objects.equals(nameOfCourse, other.nameOfCourse)
+				&& Objects.equals(schedule, other.schedule) && Objects.equals(students, other.students);
+	}
     
-    /**
-    * @generated
-    */
-    public int hashCode() {
-        //TODO
-        return 0;
-    }
+  
     
     
 }

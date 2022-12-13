@@ -3,32 +3,17 @@ package ANAT;
 import java.util.*;
 public class Employee extends User {
 
-    private int ID;
     private int salary;
     private Database database;
     private Vector messages;
     
-    public int getID() {
-        return this.ID;
-    }
-    
-    public int setID(Integer ID) {
-        this.ID = ID;
-    }
+ 
     
     public int getSalary() {
         return this.salary;
     }
     
-    public int setSalary(Integer salary) {
-        this.salary = salary;
-    }
-    
-    private int getSalary() {
-        return this.salary;
-    }
-    
-    private int setSalary(Integer salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
     
@@ -39,7 +24,7 @@ public class Employee extends User {
     //                          Operations                                  
     
     public void sendMessage(int employeeID,String content) {
-    	Message message = new Message(getID(),content);
+    	Message message = new Message(super.getID,content);
     	database.addMessage(employeeID,message);
     }
     public void readMessagrs() {
@@ -49,9 +34,11 @@ public class Employee extends User {
             System.out.println(it.next().toString());
         }
     }
-    
-    public String toString() {
-		return ID + " " + firstName + " " + lastName + " " + middleName + " ";
+
+	@Override
+	public String toString() {
+		return "Employee[ " + [super.toString() " + "salary=" + salary + ", database=" + database + ", messages=" + messages + "]";
 	}
+    
     
 }
