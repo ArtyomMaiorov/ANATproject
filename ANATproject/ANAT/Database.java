@@ -1,38 +1,60 @@
 package ANAT;
+import java.io.Serializable;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
-public class Database {
+public class Database implements Serializable {
 	
-    private TreeSet students;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static Database dbObject;
+	
+	private static TreeSet<Student> students = new TreeSet<Student>();
 
-    private TreeSet teachers;
+    private TreeSet<Teacher> teachers;
 
-    private HashSet admins;
+    private HashSet<Admin> admins;
 
-    private TreeSet managers;
+    private TreeSet<Manager> managers;
     
-    private TreeSet librarians;
+    private TreeSet<Librarian> librarians;
 
-    private HashSet courses;
+    private HashSet<Course> courses;
 
-    private MultiMap books;
-
-    private MultiMap logFiles;
+//    private MultiMap books;
+//
+//    private MultiMap logFiles;
     
     private Vector<News> newsWall;
     private Vector<Message> requests;
-    private MultiMap<Employee,Message> messages;
+//    private MultiMap<Employee,Message> messages;
     
+    public Database() {
+    	
+    }
+    public static Database getInstance() {
 
+        // create object if it's not already created
+        if(dbObject == null) {
+           dbObject = new Database();
+        }
+
+         // returns the singleton object
+         return dbObject;
+     }
     //                          Operations                                  
     
     public void addUser(User newUser) {
-    	UserType user == newUser.getUserType();
+    	UserType user = newUser.getUserType();
     	
-        if(user == UserType.STUDENT) setStudent(user);		
-        else if(user == UserType.TEACHER) setTeacher(user);		
-        else if(user == UserType.ADMIN) setAdmin(user);		
-        else if(user == UserType.MANAGER) setManager(user);
-		else if(user == UserType.LIBRARIAN) setLibrarian(user);
+        if(user == UserType.STUDENT) setStudent((Student) newUser);		
+        else if(user == UserType.TEACHER) setTeacher((Teacher) newUser);		
+        else if(user == UserType.ADMIN) setAdmin((Admin) newUser);		
+        else if(user == UserType.MANAGER) setManager((Manager) newUser);
+		else if(user == UserType.LIBRARIAN) setLibrarian((Librarian) newUser);
         
     }
     public void setStudent(Student student) {
@@ -55,76 +77,81 @@ public class Database {
         //TODO
         return false;
     }
-    
-    /**
-    * @generated
-    */
-    public TreeSet getAllUsers() {
+  
+    public TreeSet<User> getAllUsers() {
         //TODO
         return null;
+    }
+  
+    public TreeSet<Student> getAllStudents() {
+        //TODO
+        return students;
+    }
+    
+    
+    public TreeSet<Teacher> getAllTeachers() {
+        //TODO
+        return teachers;
     }
     
     /**
     * @generated
     */
-    public TreeSet getAllStudents() {
-        //TODO
-        return null;
-    }
-    
-    /**
-    * @generated
-    */
-    public TreeSet getAllTeachers() {
-        //TODO
-        return null;
-    }
-    
-    /**
-    * @generated
-    */
-    public HashSet getAllAdmins() {
+    public HashSet<Admin> getAllAdmins() {
         return admins;
     }
     
     /**
     * @generated
     */
-    public TreeSet getAllManagers() {
+    public TreeSet<Manager> getAllManagers() {
         //TODO
-        return null;
+        return managers;
     }
     
     /**
     * @generated
     */
-    public HashSet getAllCourses() {
+    public HashSet<Course> getAllCourses() {
         //TODO
-        return null;
+        return courses;
     }
     
     /**
     * @generated
     */
-    public MultiMap getAllBooks() {
-        //TODO
-        return null;
-    }
+//    public MultiMap getAllBooks() {
+//        //TODO
+//        return null;
+//    }
     
     /**
     * @generated
     */
-    public MultiMap getAllLogs() {
-        //TODO
-        return null;
-    }
+//    public MultiMap getAllLogs() {
+//        //TODO
+//        return null;
+//    }
     
+    public void addStudent(Student s) {
+    	students.add(s);
+    }
     /**
     * @generated
     */
-    public boolean saveToFile() {
-        //TODO
-        return false;
+    public void saveToFile() {
+    	try {
+	        FileOutputStream fileOut = new FileOutputStream(new File("students.txt"));
+	        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+	        objectOut.writeObject(this);
+	        objectOut.close();
+	        System.out.println("The Object  was succesfully written to a file");
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    public String toString() {
+    	return Database.students.toString();
     }
     
     

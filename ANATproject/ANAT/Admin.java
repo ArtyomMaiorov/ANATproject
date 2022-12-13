@@ -1,5 +1,6 @@
 package ANAT;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Admin extends User {
@@ -18,23 +19,23 @@ public class Admin extends User {
     public Manager getManager() {
         return this.manager;
     }
-    public Manager setManager(Manager manager) {
+    public void setManager(Manager manager) {
         this.manager = manager;
     }
     public UserFactory getUserFactory() {
         return this.userFactory;
     }
-    public UserFactory setUserFactory(UserFactory userFactory) {
+    public void setUserFactory(UserFactory userFactory) {
         this.userFactory = userFactory;
     }
     public Database getDatabase() {
         return this.database;
     }
-    public Database setDatabase(Database database) {
+    public void setDatabase(Database database) {
         this.database = database;
     }
     
-    public Admin() {
+    public Admin() throws IOException {
     	super();
     }
     
@@ -44,7 +45,7 @@ public class Admin extends User {
     	this.usersToAdd.addAll(list);
     }
     
-    public void addUsers() {
+    public void addUsers() throws IOException {
         userFactory.createUsers(usersToAdd);
         usersToAdd.clear();
     }
@@ -75,47 +76,15 @@ public class Admin extends User {
             }
             else 
             {
-          	  if(n==1) {
-          		   System.out.println("ID:");
-          		   Scanner input = new Scanner(System.in);
-                   String ID = input.next();
-                   System.out.println("firstName:");
-                   Scanner input = new Scanner(System.in);
-                   String firstName = input.next();
-                   System.out.println("lastName:");
-                   Scanner input = new Scanner(System.in);
-                   String lastName = input.next();
-                   System.out.println("middleName:");
-                   Scanner input = new Scanner(System.in);
-                   String middleName = input.next();
-                   System.out.println("birthDate:";
-                   Scanner input = new Scanner(System.in);
-                   String birthDate = input.next();
-                   System.out.println("gender:");
-                   Scanner input = new Scanner(System.in);
-                   Gender gender = input.next();
-                   System.out.println("citizenship:");
-                   Scanner input = new Scanner(System.in);
-                   String citizenship = input.next();
-                   System.out.println("email:");
-                   Scanner input = new Scanner(System.in);
-                   String email = input.next();
-                   System.out.println("login:");
-                   Scanner input = new Scanner(System.in);
-                   String login = input.next();
-                   System.out.println("password:");
-                   Scanner input = new Scanner(System.in);
-                   String password = input.next();
-                   System.out.println("userType:");
-                   Scanner input = new Scanner(System.in);
-                   UserType userType = input.next();
-          		  User user = new User(ID,firstName,lastName,middleName,birthDate,gender,citizenship,email, login, password, userType);
-          		  this.addUser(user);}
-          	  if(n==2) {this.updateUser(user);}
-          	  if(n==3) {this.deleteUser(user);}
-          	  if(n==4) {this.seeLogFiles();}
+          	  if(s.equals("1")) {
+          		   
+          	  }
+          	  if(s.equals("2")) {continue;}
+          	  if(s.equals("3")) {continue;}
+          	  if(s.equals("4")) {this.seeLogFiles();}
             }
     	  }
     
     
+}
 }
