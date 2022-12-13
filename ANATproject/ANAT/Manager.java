@@ -1,5 +1,6 @@
 package ANAT;
 
+import java.util.HashSet;
 import java.util.Vector;
 
 public class Manager extends Employee implements CanBeResearcher {
@@ -20,19 +21,12 @@ public class Manager extends Employee implements CanBeResearcher {
         this.managerType = managerType;
     }
     
-    public News getNews() {
-        return this.news;
-    }
-    
-    public void setNews(News news) {
-        this.news = news;
-    }
      
     public Transcript getTranscript() {
         return this.transcript;
     }
     
-    public Transcript setTranscript(Transcript transcript) {
+    public void setTranscript(Transcript transcript) {
         this.transcript = transcript;
     }
     
@@ -41,7 +35,7 @@ public class Manager extends Employee implements CanBeResearcher {
         return this.database;
     }
     
-    public Database setDatabase(Database database) {
+    public void setDatabase(Database database) {
         this.database = database;
     }
 
@@ -50,7 +44,7 @@ public class Manager extends Employee implements CanBeResearcher {
     }
     
 
-    public Organization setOrganization(Organization organization) {
+    public void setOrganization(Organization organization) {
         this.organization = organization;
     }
     
@@ -116,7 +110,7 @@ public class Manager extends Employee implements CanBeResearcher {
     	usersToAdd.add(user);
     }
     public void sendListOfUsersToAdmin(String adminID) {
-    	HashSet hs = database.getAllAdmins();
+    	HashSet<Admin> = database.getAllAdmins();
     	
     	for(Admin admin:hs) {
     		if(admin.getID().equals(adminID)) {
