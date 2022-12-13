@@ -13,6 +13,7 @@ public class Admin extends User {
     
     private Vector<UserType> usersToAdd = new Vector<UserType>();
     
+    
    //Getter/setter
     public Manager getManager() {
         return this.manager;
