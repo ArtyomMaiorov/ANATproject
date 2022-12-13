@@ -87,7 +87,7 @@ public class Manager extends Employee implements CanBeResearcher {
         return result;
     }
     
-    
+   
     public boolean assignCourses() {
         //TODO
         return false;

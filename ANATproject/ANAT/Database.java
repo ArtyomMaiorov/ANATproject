@@ -16,7 +16,7 @@ public class Database implements Serializable{
     private MultiMap logFiles; 
     private Vector<News> newsWall;
     private Vector<Message> requests;
-    private HashTable<int, LinkedList<Message>> messages;
+    private HashTable<Integer, LinkedList<Message>> messages;
     
     
     {
