@@ -9,6 +9,8 @@ public class Database {
     private HashSet admins;
 
     private TreeSet managers;
+    
+    private TreeSet librarians;
 
     private HashSet courses;
 
@@ -23,9 +25,32 @@ public class Database {
 
     //                          Operations                                  
     
-    /**
-    * @generated
-    */
+    public void addUser(User newUser) {
+    	UserType user == newUser.getUserType();
+    	
+        if(user == UserType.STUDENT) setStudent(user);		
+        else if(user == UserType.TEACHER) setTeacher(user);		
+        else if(user == UserType.ADMIN) setAdmin(user);		
+        else if(user == UserType.MANAGER) setManager(user);
+		else if(user == UserType.LIBRARIAN) setLibrarian(user);
+        
+    }
+    public void setStudent(Student student) {
+    	students.add(student);
+    }
+    public void setTeacher(Teacher teacher) {
+    	teachers.add(teacher);
+    }
+    public void setManager(Manager manager) {
+    	managers.add(manager);
+    }
+    public void setAdmin(Admin admin) {
+    	admins.add(admin);
+    }
+    public void setLibrarian(Librarian librarian) {
+    	librarians.add(librarian);
+    }
+    
     public boolean checkLogin() {
         //TODO
         return false;
@@ -59,8 +84,7 @@ public class Database {
     * @generated
     */
     public HashSet getAllAdmins() {
-        //TODO
-        return null;
+        return admins;
     }
     
     /**

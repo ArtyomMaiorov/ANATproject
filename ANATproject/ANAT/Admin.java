@@ -1,6 +1,6 @@
 package ANAT;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Admin extends User {
     /**
@@ -10,6 +10,8 @@ public class Admin extends User {
 	private UserFactory userFactory;
     private Manager manager;
     private Database database;
+    
+    private Vector<UserType> usersToAdd = new Vector<UserType>();
     
    //Getter/setter
     public Manager getManager() {
@@ -35,16 +37,22 @@ public class Admin extends User {
     	super();
     }
     
-    //                          Operations                                  
-    public void addUser(User user) {
-        
+    //                          Operations 
+    
+    public void setListOfUsersToAdd(Vector<UserType> list) {
+    	this.usersToAdd.addAll(list);
     }
     
-    public void updateUser(User user) {
+    public void addUsers() {
+        userFactory.createUsers(usersToAdd);
+        usersToAdd.clear();
+    }
+    
+    public void updateUsers(User user) {
         //TODO
     }
     
-    public void deleteUser(User user) {
+    public void deleteUsers(User user) {
         //TODO
     }
     

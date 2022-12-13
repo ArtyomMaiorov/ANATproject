@@ -1,5 +1,9 @@
 package ANAT;
 
 public enum UserType {
-     Student,Teacher,Manager,Admin,Librarian
+     STUDENT,
+     TEACHER,
+     MANAGER,
+     ADMIN,
+     LIBRARIAN
 }

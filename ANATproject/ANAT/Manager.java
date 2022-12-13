@@ -2,11 +2,12 @@ package ANAT;
 
 public class Manager extends Employee implements CanBeResearcher {
 
-    private ManagerType managerType;   
-    private Admin admin;    
+    private ManagerType managerType;       
     private Database database;
     private Transcript transcript;   
     private Organization organization;  
+    
+    Vector<UserType> usersToAdd = new Vector<UserType>();
     
     //Getters and Setters
     private ManagerType getManagerType() {
@@ -31,14 +32,6 @@ public class Manager extends Employee implements CanBeResearcher {
     
     public Transcript setTranscript(Transcript transcript) {
         this.transcript = transcript;
-    }
-    
-    public Admin getAdmin() {
-        return this.admin;
-    }
-
-    public Admin setAdmin(Admin admin) {
-        this.admin = admin;
     }
     
     
@@ -114,14 +107,21 @@ public class Manager extends Employee implements CanBeResearcher {
     
 
     public String toString() {
-        return "Manager's type: " + managerType.toString()+"\n";
+        return super().toString() + "Manager's type: " + managerType.toString()+"\n";
     }
     
-
-    public Vector generateStudentsList() {
+    public void addUsersToList(UserType user) {
+    	usersToAdd.add(user);
+    }
+    public void sendListOfUsersToAdmin(String adminID) {
+    	HashSet hs = database.getAllAdmins();
     	
-        return null;
+    	for(Admin admin:hs) {
+    		if(admin.getID().equals(adminID)) {
+    			admin.setListOfUsersToAdd(usersToAdd);
+    			return;
+    		}
+    	}
     }
-    
     
 }
