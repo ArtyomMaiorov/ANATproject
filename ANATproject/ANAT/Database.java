@@ -1,29 +1,52 @@
 package ANAT;
+
 import java.util.*;
-public class Database {
+import java.io.*;
+public class Database implements Serializable{
 	
-    private TreeSet students;
-
-    private TreeSet teachers;
-
+	private static final long serialVersionUID = 1L;
+	private static Database dbObject;
+	private static TreeSet<Student> students;
+	private TreeSet teachers;
     private HashSet admins;
-
-    private TreeSet managers;
-    
+    private TreeSet managers;  
     private TreeSet librarians;
-
     private HashSet courses;
-
     private MultiMap books;
-
-    private MultiMap logFiles;
-    
+    private MultiMap logFiles; 
     private Vector<News> newsWall;
     private Vector<Message> requests;
-    private MultiMap<Employee,Message> messages;
+    private HashTable<int, LinkedList<Message>> messages;
     
+    
+    {
+    	students = new TreeSet<Student>();
+    	messages = new HashTable<int, LinkedList<Message>>();
+    }
+    
+    
+    public Database() {}
+    public static Database getInstance() {
 
-    //                          Operations                                  
+        // create object if it's not already created
+        if(dbObject == null) {
+           dbObject = new Database();
+        }
+
+         // returns the singleton object
+         return dbObject;
+     }
+    
+    
+    //                          Operations  
+    
+    public void addMessage(int employeeID,Message message) {
+    	messages.get(employeeID).offer(message);
+    }
+    
+    public LinkedList<Message> getMessages(int employeeID) {
+    	return messages.get(employeeID);
+    }
     
     public void addUser(User newUser) {
     	UserType user == newUser.getUserType();
@@ -111,21 +134,27 @@ public class Database {
         return null;
     }
     
-    /**
-    * @generated
-    */
     public MultiMap getAllLogs() {
         //TODO
         return null;
     }
     
-    /**
-    * @generated
-    */
-    public boolean saveToFile() {
-        //TODO
-        return false;
+    public void addStudent(Student s) {
+    	students.add(s);
     }
     
-    
+    public void saveToFile() {
+    	try {
+	        FileOutputStream fileOut = new FileOutputStream(new File("students.txt"));
+	        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+	        objectOut.writeObject(this);
+	        objectOut.close();
+	        System.out.println("The Object  was succesfully written to a file");
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    public String toString() {
+    	return Database.students.toString();
+    }
 }

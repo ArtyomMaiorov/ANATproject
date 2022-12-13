@@ -1,9 +1,6 @@
 package ANAT;
 
 
-/**
-* @generated
-*/
 public class Message {
     
     private Employee recipient;
@@ -16,6 +13,7 @@ public class Message {
     	this.sender = sender;
     	this.content = content;
     }
+    
     //messages for other employees
     public Message(Employee sender,Employee recipient,String message){
     	this.sender = sender;
@@ -30,14 +28,13 @@ public class Message {
         this.recipient = recipient;
     }
     
-
     private Employee getSender() {
         return this.sender;
     }
-    private Employee setSender(Employee sender) {
+    
+    private Employee setSender(Employee sender){
         this.sender = sender;
     }
-    
     
     private String getContent() {
         return this.content;
@@ -46,4 +43,7 @@ public class Message {
         this.content = content;
     }
     
+    public String toString() {
+    	return sender.toString() + "\nMessage:\n" + content + "\n";
+    }
 }
