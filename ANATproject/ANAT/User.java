@@ -17,7 +17,7 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     private boolean logStatus = false;
 	private String address;
     
-    //getter/setter
+    //getter/setter.
     public String getID() {
 		return ID;
 	}
