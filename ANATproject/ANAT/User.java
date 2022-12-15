@@ -2,9 +2,6 @@ package ANAT;
 import java.io.*;
 import java.util.*;
 public abstract class User implements Serializable, Comparable<User>, CanBeResearcher {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String ID;    
     private String firstName;
