@@ -6,10 +6,11 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Student extends User implements CanBeResearcher {
-    private String entranceYear;
+    private static final long serialVersionUID = 1L;
+	private String entranceYear;
     private Faculty faculty;
     private double GPA; 
-    private Vector courses;
+    private Vector<?> courses;
     private Major major;
     private final static int creditLimit = 21;
     private Degree degree;
