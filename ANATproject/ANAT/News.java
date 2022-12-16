@@ -12,7 +12,7 @@ public class News {
     	this.newsID = cnt++;
     }
     
-    public News(Stirng title,String content) {
+    public News(String title,String content) {
     	this.newsContent = content;
     	this.newsTitle = title;
     }
@@ -24,7 +24,7 @@ public class News {
         return this.newsTitle;
     }
 
-    public String setNewsTitle(String newsTitle) {
+    public void setNewsTitle(String newsTitle) {
         this.newsTitle = newsTitle;
     }
     
@@ -32,7 +32,7 @@ public class News {
         return this.newsContent;
     }
 
-    public String setNewsContent(String newsContent) {
+    public void setNewsContent(String newsContent) {
         this.newsContent = newsContent;
     }
     

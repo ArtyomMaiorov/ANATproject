@@ -22,7 +22,7 @@ public class UserFactory {
 		
 		return null;
 	}
-	
+
     public void createUsers(Vector<UserType> list) throws IOException {
 		
 		for(int i=0;i<list.size();i++) {
