@@ -99,14 +99,14 @@ public class Lesson {
     /**
     * @generated
     */
-    private Vector getStudents() {
+    public Vector getStudents() {
         return this.students;
     }
     
     /**
     * @generated
     */
-    private void setStudents(Vector students) {
+    public void setStudents(Vector students) {
         this.students = students;
     }
     
