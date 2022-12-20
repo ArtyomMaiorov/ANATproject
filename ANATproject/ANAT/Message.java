@@ -4,19 +4,20 @@ import java.io.Serializable;
 
 public class Message implements Serializable {
     
-    private Employee recipient;
+    private static final long serialVersionUID = 1L;
+	private Employee recipient;
     private Employee sender;
     private String content;
     
     public Message(){}
     //request
-    public Message(Employee sender,String message){
+    public Message(Employee sender,String content){
     	this.sender = sender;
     	this.content = content;
     }
     
     //messages for other employees
-    public Message(Employee sender,Employee recipient,String message){
+    public Message(Employee sender,Employee recipient,String content){
     	this.sender = sender;
     	this.recipient = recipient;
     	this.content = content;

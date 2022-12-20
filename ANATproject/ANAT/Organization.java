@@ -19,19 +19,19 @@ public class Organization {
     	this.nameOrganization = name;
     }
     
-    private String getNameOrganization() {
+    public String getNameOrganization() {
         return this.nameOrganization;
     }
    
-    private String setNameOrganization(String nameOrganization) {
+    public void setNameOrganization(String nameOrganization) {
         this.nameOrganization = nameOrganization;
     }
     
-    private Student getHead() {
+    public Student getHead() {
         return this.head;
     }
     
-    private Student setHead(Student head) {
+    public void setHead(Student head) {
         this.head = head;
     }
     

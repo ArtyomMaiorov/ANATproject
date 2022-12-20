@@ -6,12 +6,10 @@ public class Transcript {
     private String firstName;
     
     private String studentSurname;
-    
-    /**
-    * @generated
-    */
-    private Multimap coursesMarks;
+
+    private Multimap<?, ?> coursesMarks;
     //TODO implement multi map
+    
     public String getFirstName() {
   		return firstName;
   	}
@@ -28,7 +26,7 @@ public class Transcript {
   		this.studentSurname = studentSurname;
   	}
 
-  	public Multimap getCoursesMarks() {
+  	public Multimap<?, ?> getCoursesMarks() {
   		return coursesMarks;
   	}
 
@@ -42,20 +40,12 @@ public class Transcript {
     
 
     //                          Operations                                  
-    
-  
 
-	/**
-    * @generated
-    */
     public Transcript getTranscript() {
         //TODO
         return this;
     }
-    
-    /**
-    * @generated
-    */
+
     public double calculateGPA() {
         //TODO
         return 0.0;

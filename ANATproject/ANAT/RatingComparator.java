@@ -2,26 +2,10 @@ package ANAT;
 
 import java.util.Comparator;
 
-/**
-* @generated
-*/
 public class RatingComparator implements Comparator<Teacher> {
-    
-    
-    
-
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int compare() {
-        //TODO
-        return 0;
-    }
-    
-    
+	@Override
+	public int compare(Teacher o1, Teacher o2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}  
 }

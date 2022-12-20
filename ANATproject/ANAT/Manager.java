@@ -19,11 +19,11 @@ public class Manager extends Employee implements CanBeResearcher {
     }
     
     //Getters and Setters
-    private ManagerType getManagerType() {
+    public ManagerType getManagerType() {
         return this.managerType;
     }
    
-    private void setManagerType(ManagerType managerType) {
+    public void setManagerType(ManagerType managerType) {
         this.managerType = managerType;
     }
      

@@ -1,358 +1,92 @@
 package ANAT;
-
-
-/**
-* @generated
-*/
 public class Mark {
-    
-    /**
-    * @generated
-    */
     private Course courseName;
-    
-    /**
-    * @generated
-    */
     private double points;
-    
-    /**
-    * @generated
-    */
     private double firstAtt;
-    
-    /**
-    * @generated
-    */
     private double secondAtt;
-    
-    /**
-    * @generated
-    */
     private double finalScore;
-    
-    /**
-    * @generated
-    */
     private double totalAtt;
-    
-    /**
-    * @generated
-    */
     private String letterGrade;
-    
-    
-    /**
-    * @generated
-    */
     private Teacher teacher;
-    
-    /**
-    * @generated
-    */
-    private Teacher teacher;
-    
-    /**
-    * @generated
-    */
-    private Teacher teacher;
-    
-    /**
-    * @generated
-    */
-    private Teacher teacher;
-    
-    /**
-    * @generated
-    */
     private Database database;
-    
-    /**
-    * @generated
-    */
-    private Database database;
-    
-    /**
-    * @generated
-    */
     private Student student;
     
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    
-
-    /**
-    * @generated
-    */
-    private Course getCourseName() {
+    //setter/getter
+    public Course getCourseName() {
         return this.courseName;
     }
-    
-    /**
-    * @generated
-    */
-    private Course setCourseName(Course courseName) {
+    public void setCourseName(Course courseName) {
         this.courseName = courseName;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private double getPoints() {
+    public double getPoints() {
         return this.points;
     }
-    
-    /**
-    * @generated
-    */
-    private double setPoints(Real points) {
+    public void setPoints(double points) {
         this.points = points;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private double getFirstAtt() {
+    public double getFirstAtt() {
         return this.firstAtt;
     }
-    
-    /**
-    * @generated
-    */
-    private double setFirstAtt(Real firstAtt) {
+    public void setFirstAtt(double firstAtt) {
         this.firstAtt = firstAtt;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private double getSecondAtt() {
+    public double getSecondAtt() {
         return this.secondAtt;
     }
-    
-    /**
-    * @generated
-    */
-    private double setSecondAtt(Real secondAtt) {
+    public void setSecondAtt(double secondAtt) {
         this.secondAtt = secondAtt;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private double getFinalScore() {
+    public double getFinalScore() {
         return this.finalScore;
     }
-    
-    /**
-    * @generated
-    */
-    private double setFinalScore(Real finalScore) {
+    public void setFinalScore(double finalScore) {
         this.finalScore = finalScore;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private double getTotalAtt() {
+    public double getTotalAtt() {
         return this.totalAtt;
     }
-    
-    /**
-    * @generated
-    */
-    private double setTotalAtt(Real totalAtt) {
+    public void setTotalAtt(double totalAtt) {
         this.totalAtt = totalAtt;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getLetterGrade() {
+    public String getLetterGrade() {
         return this.letterGrade;
     }
-    
-    /**
-    * @generated
-    */
-    private String setLetterGrade(String letterGrade) {
+    public void setLetterGrade(String letterGrade) {
         this.letterGrade = letterGrade;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
     public Teacher getTeacher() {
         return this.teacher;
     }
-    
-    /**
-    * @generated
-    */
-    public Teacher setTeacher(Teacher teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-    
-    
-    /**
-    * @generated
-    */
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Teacher setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Teacher setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Teacher setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    
-    /**
-    * @generated
-    */
     public Student getStudent() {
         return this.student;
     }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
+    public void setStudent(Student student) {
         this.student = student;
     }
-    
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    /**
-    * @generated
-    */
     public Database getDatabase() {
         return this.database;
     }
-    
-    /**
-    * @generated
-    */
-    public Database setDatabase(Database database) {
+    public void setDatabase(Database database) {
         this.database = database;
     }
-    
-    
-    /**
-    * @generated
-    */
-    public Database getDatabase() {
-        return this.database;
-    }
-    
-    /**
-    * @generated
-    */
-    public Database setDatabase(Database database) {
-        this.database = database;
-    }
-    
     
     
 
     //                          Operations                                  
     
-    /**
-    * @generated
-    */
     public String convertToNumber() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
     public double getTotalPoints() {
         //TODO
         return 0.0;
     }
     
-    /**
-    * @generated
-    */
     public String getLetterScore() {
         //TODO
         return "";

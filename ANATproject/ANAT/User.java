@@ -124,17 +124,6 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 		} catch(Exception e) {
 			System.out.println("Wrong user type");
 		}
-//		this.ID = ID;
-//		this.email = email;
-//		this.firstName = firstName;
-//		this.lastName = lastName;
-//		this.middleName = middleName;
-//		this.birthDate = birthDate;
-//		this.gender = gender;
-//		this.citizenship = citizenship;
-//		this.login = login;
-//		this.password = password;
-//		this.userType = userType;
 	}
     //                          Operations                                  
     

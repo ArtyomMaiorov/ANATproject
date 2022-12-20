@@ -63,10 +63,10 @@ public class Student extends User implements CanBeResearcher{
     public void setGPA(double GPA) {
         this.GPA = GPA;
     }
-    public Vector getCourses() {
+    public Vector<?> getCourses() {
         return this.courses;
     }
-    public void setCourses(Vector courses) {
+    public void setCourses(Vector<?> courses) {
         this.courses = courses;
     }
     public Major getMajor() {
@@ -76,7 +76,7 @@ public class Student extends User implements CanBeResearcher{
         this.major = major;
     }
     public int getCreditLimit() {
-        return this.creditLimit;
+        return Student.creditLimit;
     }
     public Degree getDegree() {
         return this.degree;
@@ -84,7 +84,6 @@ public class Student extends User implements CanBeResearcher{
     public void setDegree(Degree degree) {
         this.degree = degree;
     }
-    
     public void setSchedule( Vector<Lesson> lessons){
     	this.schedule = lessons;
     }
@@ -193,10 +192,6 @@ public class Student extends User implements CanBeResearcher{
                 //TODO
             }
     	  }
-      }
-
-	
-
-	
+    }
     
 }
