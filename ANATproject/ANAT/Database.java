@@ -3,7 +3,7 @@ package ANAT;
 import java.util.*;
 import java.io.*;
 public class Database implements Serializable{
-	
+	public static User currentUser;
 	private static final long serialVersionUID = 1L;
 	private static Database dbObject;
 	private TreeSet<Student> students;
@@ -25,7 +25,7 @@ public class Database implements Serializable{
     }
     
     
-    public Database() {}
+    private Database() {}
     public static Database getInstance() {
 
         // create object if it's not already created
@@ -109,12 +109,36 @@ public class Database implements Serializable{
     public TreeMap<User, String> getAllLogs() {
         return this.logFiles;
     }
+    public Vector<News> getNewsWall() {
+		return newsWall;
+	}
+	public void setNewsWall(Vector<News> newsWall) {
+		this.newsWall = newsWall;
+	}
+	public Vector<Message> getRequests() {
+		return requests;
+	}
+	public void setRequests(Vector<Message> requests) {
+		this.requests = requests;
+	}
     
-    public void saveDatabase() {
+    public void saveDatabase() throws IOException {
+    	File file = new File("database.txt");
+    	file.createNewFile();
+    	if (!file.exists()) {
+    	    file.createNewFile();
+    	}
+    	// Check if the file is writable
+    	if (!file.canWrite()) {
+    	    // Modify the file's permissions to make it writable
+    	    file.setWritable(true);
+    	}
+
     	try {
-	        FileOutputStream fos = new FileOutputStream(new File("database.txt"));
+	        FileOutputStream fos = new FileOutputStream("database.txt");
 	        ObjectOutputStream oos = new ObjectOutputStream(fos);
-	        oos.writeObject(this);
+	        oos.writeObject(dbObject);
+	        oos.writeObject("hello");
 	        oos.close();
 	        System.out.println("The Object  was succesfully written to a file");
     	} catch(Exception e) {
@@ -128,7 +152,70 @@ public class Database implements Serializable{
     	dbObject = (Database)ois.readObject();
     	ois.close();
     }
+    
+    public void login(String login, String password, int which) throws ClassNotFoundException, IOException, UnsuccessfulLoginException {
+    	loadDatabase();
+    	boolean isLogedIn = false;
+    	UserType whichUser = UserType.values()[which];
+    	switch(whichUser) {
+    	case STUDENT:
+    		for(Student student : students) {
+    			if(student.getLogin().equals(login) && student.getPassword().equals(password)) {
+    				currentUser =  student;
+    				isLogedIn = true;
+    			} else {
+    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+    			}
+    		}
+    		break;
+    	case TEACHER:
+    		for(Teacher teacher : teachers) {
+    			if(teacher.getLogin().equals(login) && teacher.getPassword().equals(password)) {
+    				currentUser = teacher;
+    				isLogedIn = true;
+    			} else {
+    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+    			}
+    		}
+    		break;
+    	case MANAGER:
+    		for(Manager manager: managers) {
+    			if(manager.getLogin().equals(login) && manager.getPassword().equals(password)) {
+    				currentUser = manager;
+    				isLogedIn = true;
+    			} else {
+    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+    			}
+    		}
+    		break;
+    	case ADMIN:
+    		for(Admin admin: admins) {
+    			if(admin.getLogin().equals(login) && admin.getPassword().equals(password)) {
+    				currentUser = admin;
+    				isLogedIn = true;
+    			} else {
+    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+    			}
+    		}
+    		break;
+    	case LIBRARIAN:
+    		for(Librarian librarian: librarians) {
+    			if(librarian.getLogin().equals(login) && librarian.getPassword().equals(password)) {
+    				currentUser = librarian;
+    				isLogedIn = true;
+    			} else {
+    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+    			}
+    		}
+    		break;
+    	default:
+    		currentUser = null;
+    	}
+    	String success = (isLogedIn) ? "successful" : "not successful";
+    	System.out.println("Log in is " + success);
+    }
     public String toString() {
     	return dbObject.toString();
     }
+	
 }

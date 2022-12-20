@@ -1,12 +1,16 @@
 package ANAT;
 
+import java.io.Serializable;
+import java.util.Vector;
 
 /**
 * @generated
 */
-public class Course {
-    
-    /**
+public class Course implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
+	/**
     * @generated
     */
     private String nameOfCourse;
@@ -45,13 +49,9 @@ public class Course {
     /**
     * @generated
     */
-    private Student student;
+    private Student students;
     
-    /**
-    * @generated
-    */
-    private Student student;
-    
+  
     
 
     /**
@@ -64,7 +64,7 @@ public class Course {
     /**
     * @generated
     */
-    private String setNameOfCourse(String nameOfCourse) {
+    private void setNameOfCourse(String nameOfCourse) {
         this.nameOfCourse = nameOfCourse;
     }
     
@@ -79,7 +79,7 @@ public class Course {
     /**
     * @generated
     */
-    private String setCourseID(String courseID) {
+    private void setCourseID(String courseID) {
         this.courseID = courseID;
     }
     
@@ -94,7 +94,7 @@ public class Course {
     /**
     * @generated
     */
-    private Vector setInstructors(Vector instructors) {
+    private void setInstructors(Vector instructors) {
         this.instructors = instructors;
     }
     
@@ -109,7 +109,7 @@ public class Course {
     /**
     * @generated
     */
-    private int setCredits(Integer credits) {
+    private void setCredits(Integer credits) {
         this.credits = credits;
     }
     
@@ -124,7 +124,7 @@ public class Course {
     /**
     * @generated
     */
-    private Vector setSchedule(Vector schedule) {
+    private void setSchedule(Vector schedule) {
         this.schedule = schedule;
     }
     
@@ -140,7 +140,7 @@ public class Course {
     /**
     * @generated
     */
-    public Teacher setTeacher(Teacher teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
     
@@ -155,7 +155,7 @@ public class Course {
     /**
     * @generated
     */
-    public Lesson setLesson(Lesson lesson) {
+    public void setLesson(Lesson lesson) {
         this.lesson = lesson;
     }
     
@@ -163,31 +163,18 @@ public class Course {
     /**
     * @generated
     */
-    public Student getStudent() {
-        return this.student;
+    public Student getStudents() {
+        return this.students;
     }
     
     /**
     * @generated
     */
-    public Student setStudent(Student student) {
-        this.student = student;
+    public void setStudent(Student students) {
+        this.students = students;
     }
     
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
+   
     
     
     

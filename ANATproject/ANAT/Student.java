@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Student extends User implements CanBeResearcher {
+public class Student extends User implements CanBeResearcher{
     private static final long serialVersionUID = 1L;
 	private String entranceYear;
     private Faculty faculty;
@@ -146,7 +146,7 @@ public class Student extends User implements CanBeResearcher {
     }
     
     public void showInterface() {
-    	 super.showBasicInterface();
+//    	 super.showBasicInterface();
     	 while(true) {
             System.out.println("Enter number(S to stop choosing) (Student): ");
             System.out.println("1.register To Course");

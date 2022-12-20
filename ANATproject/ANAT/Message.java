@@ -1,7 +1,8 @@
 package ANAT;
 
+import java.io.Serializable;
 
-public class Message {
+public class Message implements Serializable {
     
     private Employee recipient;
     private Employee sender;
@@ -24,7 +25,7 @@ public class Message {
     public Employee getRecipient() {
         return this.recipient;
     }
-    public Employee setRecipient(Employee recipient) {
+    public void setRecipient(Employee recipient) {
         this.recipient = recipient;
     }
     
@@ -32,14 +33,14 @@ public class Message {
         return this.sender;
     }
     
-    private Employee setSender(Employee sender){
+    private void setSender(Employee sender){
         this.sender = sender;
     }
     
     private String getContent() {
         return this.content;
     }
-    private String setContent(String content) {
+    private void setContent(String content) {
         this.content = content;
     }
     

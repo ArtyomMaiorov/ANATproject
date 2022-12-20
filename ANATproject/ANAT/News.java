@@ -1,6 +1,8 @@
 package ANAT;
 
-public class News {
+import java.io.Serializable;
+
+public class News implements Serializable{
 	
 	private int newsID;
 	private static int cnt;
