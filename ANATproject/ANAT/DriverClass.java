@@ -10,15 +10,22 @@ public class DriverClass {
 //		db.addUser(Artyom);
 //		System.out.println(db.getAllStudents());
 //		db.saveDatabase();
-		Database.loadDatabase();
-		System.out.println(Database.getInstance());
-		Database db = Database.getInstance();
-		Database.login("a", "a", 0);
-		((Student) Database.currentUser).showInterface();
-		Database.logout();
-		System.out.println(((Student) Database.currentUser));
-		System.out.println(db);
-		System.out.println(db.getAllStudents().toString());
-		Database.login("artmay", "123456f", 0);
+//		Database.loadDatabase();
+//		System.out.println(Database.getInstance());
+//		Database db = Database.getInstance();
+//		Database.login("a", "a", 0);
+//		((Student) Database.currentUser).showInterface();
+//		Database.logout();
+//		System.out.println(((Student) Database.currentUser));
+//		System.out.println(db);
+//		System.out.println(db.getAllStudents().toString());
+//		Database.login("artmay", "123456f", 0);
+		Student S1 = new Student();
+		Student S2 = new Student();
+		System.out.println(S1);
+		S1.sendMessage(S2,"title", "smth");
+		S2.readMessages();
+		
 	}
 }
+

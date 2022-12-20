@@ -16,7 +16,7 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     private UserType userType;
     private boolean logStatus = false;
 	private String address;
-	private List <Message> messages;
+	private Vector <Message> messages = new Vector<Message>();
 	
     //getter/setter
     public String getID() {
