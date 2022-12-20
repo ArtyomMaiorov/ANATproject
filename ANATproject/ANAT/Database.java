@@ -6,22 +6,22 @@ public class Database implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private static Database dbObject;
-	private static TreeSet<Student> students;
-	private TreeSet teachers;
-    private HashSet admins;
-    private TreeSet managers;  
-    private TreeSet librarians;
-    private HashSet courses;
-    private MultiMap books;
-    private MultiMap logFiles; 
+	private TreeSet<Student> students;
+	private TreeSet<Teacher> teachers;
+    private HashSet<Admin> admins;
+    private TreeSet<Manager> managers;  
+    private TreeSet<Librarian> librarians;
+    private TreeSet<Course> courses;
+    private TreeMap<Student, Book> books;
+    private TreeMap<User,String> logFiles; 
     
     private Vector<News> newsWall;//we can add/delete/update news and show them
     private Vector<Message> requests; //managers will be able to get all requests
-    private HashTable<Integer, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
+    private Hashtable<Integer, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
      
     {
     	students = new TreeSet<Student>();
-    	messages = new HashTable<int, LinkedList<Message>>();
+    	messages = new Hashtable<Integer, LinkedList<Message>>();
     }
     
     
@@ -52,13 +52,13 @@ public class Database implements Serializable{
     }
     
     public void addUser(User newUser) {
-    	UserType user == newUser.getUserType();
+    	UserType user = newUser.getUserType();
     	
-        if(user == UserType.STUDENT) setStudent(user);		
-        else if(user == UserType.TEACHER) setTeacher(user);		
-        else if(user == UserType.ADMIN) setAdmin(user);		
-        else if(user == UserType.MANAGER) setManager(user);
-		else if(user == UserType.LIBRARIAN) setLibrarian(user);
+        if(user == UserType.STUDENT) setStudent((Student) newUser);		
+        else if(user == UserType.TEACHER) setTeacher((Teacher) newUser);		
+        else if(user == UserType.ADMIN) setAdmin((Admin) newUser);		
+        else if(user == UserType.MANAGER) setManager((Manager) newUser);
+		else if(user == UserType.LIBRARIAN) setLibrarian((Librarian) newUser);
         
     }
     public void setStudent(Student student) {
@@ -82,82 +82,53 @@ public class Database implements Serializable{
         return false;
     }
     
-    /**
-    * @generated
-    */
-    public TreeSet getAllUsers() {
-        //TODO
-        return null;
+    public TreeSet<Student> getAllStudents() {
+        return this.students;
     }
     
-    /**
-    * @generated
-    */
-    public TreeSet getAllStudents() {
-        //TODO
-        return null;
+    public TreeSet<Teacher> getAllTeachers() {
+        return this.teachers;
     }
     
-    /**
-    * @generated
-    */
-    public TreeSet getAllTeachers() {
-        //TODO
-        return null;
+    public HashSet<Admin> getAllAdmins() {
+        return this.admins;
     }
     
-    /**
-    * @generated
-    */
-    public HashSet getAllAdmins() {
-        return admins;
+    public TreeSet<Manager> getAllManagers() {
+        return this.managers;
     }
     
-    /**
-    * @generated
-    */
-    public TreeSet getAllManagers() {
-        //TODO
-        return null;
+    public TreeSet<Course> getAllCourses() {
+        return this.courses;
     }
     
-    /**
-    * @generated
-    */
-    public HashSet getAllCourses() {
-        //TODO
-        return null;
+    public TreeMap<Student, Book> getAllBooks() {
+        return this.books;
     }
     
-    /**
-    * @generated
-    */
-    public MultiMap getAllBooks() {
-        //TODO
-        return null;
+    public TreeMap<User, String> getAllLogs() {
+        return this.logFiles;
     }
     
-    public MultiMap getAllLogs() {
-        //TODO
-        return null;
-    }
-    
-    public void addStudent(Student s) {
-    	students.add(s);
-    }
-    
-    public void saveToFile() {
+    public void saveDatabase() {
     	try {
-	        FileOutputStream fileOut = new FileOutputStream(new File("students.txt"));
-	        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-	        objectOut.writeObject(this);
-	        objectOut.close();
+	        FileOutputStream fos = new FileOutputStream(new File("database.txt"));
+	        ObjectOutputStream oos = new ObjectOutputStream(fos);
+	        oos.writeObject(this);
+	        oos.close();
 	        System.out.println("The Object  was succesfully written to a file");
     	} catch(Exception e) {
     		e.printStackTrace();
     	}
     }
+    
+    public void loadDatabase() throws IOException, ClassNotFoundException {
+    	FileInputStream fis = new FileInputStream("database.txt");
+    	ObjectInputStream ois = new ObjectInputStream(fis);
+    	dbObject = (Database)ois.readObject();
+    	ois.close();
+    }
     public String toString() {
-    	return Database.students.toString();
+    	return dbObject.toString();
     }
 }
