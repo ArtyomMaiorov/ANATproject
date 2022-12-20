@@ -16,6 +16,7 @@ public class Employee extends User {
     public void setSalary(int salary) {
         this.salary = salary;
     } 
+    
     //constructor
     public Employee() throws IOException {
 		super();
@@ -28,27 +29,24 @@ public class Employee extends User {
 
     //                          Operations                                  
     
-    public void sendMessage(Employee other,Message message) {
-//    	Message message = new Message(other,content);
-    //	database.addMessage(,message);
+    
+    public void writeRequest(Employee other,String content) {
+    	Message message = new Message(other,content);
+    	database.addMessage(other.getID(),message);
+    }
+    
+    public void sendMessage(Employee other,String content) {
+    	Message message = new Message(other,content);
+    	database.addMessage(other.getID(),message);
     }
     public void readMessagrs() {
-//    	LinkedList<Message> list = database.getMessages(getID());
-//    	Iterator it = list.iterator();
-//    	while(it.hasNext()){
-//            System.out.println(it.next().toString());
-//        }
+    	LinkedList<Message> list = database.getMessages(getID());
+    	Iterator it = list.iterator();
+    	while(it.hasNext()){
+            System.out.println(it.next().toString());
+        }
     }
-   
-    public void writeRequest() {
-    	//TODO 
-    }
-    
-    public void addMessage(Message message) {
-//    	messages.add(message);
-    }
-    
-    
+
     
     //                              Override
     public String toString() {

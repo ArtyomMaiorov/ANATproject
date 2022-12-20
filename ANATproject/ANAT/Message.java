@@ -29,18 +29,18 @@ public class Message implements Serializable {
         this.recipient = recipient;
     }
     
-    private Employee getSender() {
+    public Employee getSender() {
         return this.sender;
     }
     
-    private void setSender(Employee sender){
+    public void setSender(Employee sender){
         this.sender = sender;
     }
     
-    private String getContent() {
+    public String getContent() {
         return this.content;
     }
-    private void setContent(String content) {
+    public void setContent(String content) {
         this.content = content;
     }
     

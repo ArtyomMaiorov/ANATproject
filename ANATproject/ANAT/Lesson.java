@@ -3,38 +3,16 @@ package ANAT;
 import java.util.Date;
 import java.util.Vector;
 
-/**
-* @generated
-*/
 public class Lesson {
     
-    /**
-    * @generated
-    */
-    private int id;
-    
-    /**
-    * @generated
-    */
-    private Course course;
-    
-    /**
-    * @generated
-    */
-    private Date dateTime;
-    
-    /**
-    * @generated
-    */
+    private int id;    
+    private Course course;    
+    private Date dateTime; 
     private Teacher teacher;
-    
-    /**
-    * @generated
-    */
     private Room room;
-
-    private Vector students;
-   
+    
+    private Vector<Student> students; //list of students, which should be in that lesson
+    
     public int getId() {
         return this.id;
     }
@@ -50,82 +28,57 @@ public class Lesson {
     public void setCourse(Course course) {
         this.course = course;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public Date getDateTime() {
         return this.dateTime;
     }
-    
-    /**
-    * @generated
-    */
+
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public Teacher getTeacher() {
         return this.teacher;
     }
-    
-    /**
-    * @generated
-    */
+
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public Room getRoom() {
         return this.room;
     }
-    
-    /**
-    * @generated
-    */
+
     public void setRoom(Room room) {
         this.room = room;
     }
-   
-    /**
-    * @generated
-    */
-    public Vector getStudents() {
-        return this.students;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setStudents(Vector students) {
-        this.students = students;
-    }
-    
-
-    
- 
-  
-    
-    
 
     //                          Operations                                  
     
-    /**
-    * @generated
-    */
+    // for all students from the list above, teacher can do attendance
+    public void attendance(double timer) {
+    	for(Student student:students) {
+    		student.getJournal().setAttendance(dateTime, Attendance.Absent);
+    	}
+    }
     public boolean deleteLesson() {
         //TODO
         return false;
     }
     
+    public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lesson other = (Lesson) obj;
+		return id == other.id && dateTime.equals(other.dateTime) && course.equals(other.course);
+	}
+    
+    public String toString() {
+    	return course.toString() + " (" + dateTime.getTime() + ")";
+    }
     
 }

@@ -15,6 +15,9 @@ public class Student extends User implements CanBeResearcher{
     private final static int creditLimit = 21;
     private Degree degree;
     
+    private Vector<Lesson> schedule; //Schedule of student
+    private Journal journal;
+    
     public Student() throws IOException {
     	super();
     	InputStreamReader r = new InputStreamReader(System.in);
@@ -81,6 +84,13 @@ public class Student extends User implements CanBeResearcher{
     public void setDegree(Degree degree) {
         this.degree = degree;
     }
+    
+    public void setSchedule( Vector<Lesson> lessons){
+    	this.schedule = lessons;
+    }
+    public Journal getJournal() {
+    	return this.journal;
+    }
     //                          Operations                                  
     
     public boolean registerToCourse() {
@@ -115,17 +125,26 @@ public class Student extends User implements CanBeResearcher{
     public void viewCourses() {
         //TODO
     }
- 
+    
+    //Show list of lessons, which student has
     public void viewSchedule() {
-        //TODO
+        for(Lesson lesson:schedule) {
+        	System.out.println(lesson.toString());
+        }
     }
     
     public void viewTranscript() {
         //TODO
     }
     
-    public void viewAttendance() {
-        //TODO
+    //Here student can check if there are any attendance, then do attendance
+    public void doAttendance() {
+        Vector<Date> attLessons = journal.getTimerAttendance();
+        if(!attLessons.isEmpty()) {
+        	for(Date date:attLessons) {
+        		journal.setAttendance(date, Attendance.Attended);
+        	}
+        }
     }
    
     public void viewExamSchedule() {

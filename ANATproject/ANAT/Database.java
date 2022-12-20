@@ -17,11 +17,11 @@ public class Database implements Serializable{
     
     private static Vector<News> newsWall;//we can add/delete/update news and show them
     private static Vector<Message> requests; //managers will be able to get all requests
-    private static Hashtable<Integer, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
+    private static Hashtable<String, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
      
     {
     	students = new TreeSet<Student>();
-    	messages = new Hashtable<Integer, LinkedList<Message>>();
+    	messages = new Hashtable<String, LinkedList<Message>>();
     }
     
     
@@ -41,13 +41,12 @@ public class Database implements Serializable{
     //                          Operations  
     
     
-    public void addMessage(int employeeID,Message message) {
+    public void addMessage(String employeeID,Message message) {
     	//employeeID is receiver
     	messages.get(employeeID).offer(message);
     }
     
-    public LinkedList<Message> getMessages(int employeeID) {
-    	//employeeID is
+    public LinkedList<Message> getMessages(String employeeID) {
     	return messages.get(employeeID);
     }
     
