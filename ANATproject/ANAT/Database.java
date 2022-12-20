@@ -6,18 +6,18 @@ public class Database implements Serializable{
 	public static User currentUser;
 	private static final long serialVersionUID = 1L;
 	private static Database dbObject;
-	private TreeSet<Student> students;
-	private TreeSet<Teacher> teachers;
-    private HashSet<Admin> admins;
-    private TreeSet<Manager> managers;  
-    private TreeSet<Librarian> librarians;
-    private TreeSet<Course> courses;
-    private TreeMap<Student, Book> books;
-    private TreeMap<User,String> logFiles; 
+	private static TreeSet<Student> students;
+	private static TreeSet<Teacher> teachers;
+    private static HashSet<Admin> admins;
+    private static TreeSet<Manager> managers;  
+    private static TreeSet<Librarian> librarians;
+    private static TreeSet<Course> courses;
+    private static TreeMap<Student, Book> books;
+    private static TreeMap<User,String> logFiles; 
     
-    private Vector<News> newsWall;//we can add/delete/update news and show them
-    private Vector<Message> requests; //managers will be able to get all requests
-    private Hashtable<Integer, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
+    private static Vector<News> newsWall;//we can add/delete/update news and show them
+    private static Vector<Message> requests; //managers will be able to get all requests
+    private static Hashtable<Integer, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
      
     {
     	students = new TreeSet<Student>();
@@ -122,7 +122,7 @@ public class Database implements Serializable{
 		this.requests = requests;
 	}
     
-    public void saveDatabase() throws IOException {
+    public static void saveDatabase() throws IOException {
     	File file = new File("database.txt");
     	file.createNewFile();
     	if (!file.exists()) {
@@ -146,14 +146,14 @@ public class Database implements Serializable{
     	}
     }
     
-    public void loadDatabase() throws IOException, ClassNotFoundException {
+    public static void loadDatabase() throws IOException, ClassNotFoundException {
     	FileInputStream fis = new FileInputStream("database.txt");
     	ObjectInputStream ois = new ObjectInputStream(fis);
     	dbObject = (Database)ois.readObject();
     	ois.close();
     }
     
-    public void login(String login, String password, int which) throws ClassNotFoundException, IOException, UnsuccessfulLoginException {
+    public static void login(String login, String password, int which) throws ClassNotFoundException, IOException, UnsuccessfulLoginException {
     	loadDatabase();
     	boolean isLogedIn = false;
     	UserType whichUser = UserType.values()[which];
@@ -161,7 +161,7 @@ public class Database implements Serializable{
     	case STUDENT:
     		for(Student student : students) {
     			if(student.getLogin().equals(login) && student.getPassword().equals(password)) {
-    				currentUser =  student;
+    				currentUser = student;
     				isLogedIn = true;
     			} else {
     		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
@@ -214,8 +214,15 @@ public class Database implements Serializable{
     	String success = (isLogedIn) ? "successful" : "not successful";
     	System.out.println("Log in is " + success);
     }
-    public String toString() {
-    	return dbObject.toString();
+
+    public static void logout() {
+    	currentUser = null;
     }
+	public String toString() {
+		return "Database [students=" + students + ", teachers=" + teachers + ", admins=" + admins + ", managers="
+				+ managers + ", librarians=" + librarians + ", courses=" + courses + ", books=" + books + ", logFiles="
+				+ logFiles + ", newsWall=" + newsWall + ", requests=" + requests + ", messages=" + messages + "]";
+	}
+    
 	
 }
