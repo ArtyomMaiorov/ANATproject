@@ -30,22 +30,22 @@ public class Employee extends User {
     //                          Operations                                  
     
     
-    public void writeRequest(Employee other,String content) {
-    	Message message = new Message(other,content);
-    	database.addMessage(other.getID(),message);
-    }
-    
-    public void sendMessage(Employee other,String content) {
-    	Message message = new Message(other,content);
-    	database.addMessage(other.getID(),message);
-    }
-    public void readMessagrs() {
-    	LinkedList<Message> list = database.getMessages(getID());
-    	Iterator it = list.iterator();
-    	while(it.hasNext()){
-            System.out.println(it.next().toString());
-        }
-    }
+//    public void writeRequest(Employee other,String content) {
+//    	Message message = new Message(other,content);
+//    	database.addMessage(other.getID(),message);
+//    }
+//    
+//    public void sendMessage(Employee other,String content) {
+//    	Message message = new Message(other,content);
+//    	database.addMessage(other.getID(),message);
+//    }
+//    public void readMessagrs() {
+//    	LinkedList<Message> list = database.getMessages(getID());
+//    	Iterator it = list.iterator();
+//    	while(it.hasNext()){
+//            System.out.println(it.next().toString());
+//        }
+//    }
 
     
     //                              Override

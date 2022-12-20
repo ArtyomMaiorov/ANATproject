@@ -4,32 +4,28 @@ import java.io.Serializable;
 
 public class Message implements Serializable {
     private static final long serialVersionUID = 1L;
-	private Employee recipient;
-    private Employee sender;
-    private String content;
+	private User recipient;
+    private User sender;
+    private String subject;
+    private String body;
+    private boolean isRead;
     
-    public Message(){}
-    //request
-    public Message(Employee sender,String content){
-    	this.sender = sender;
-    	this.content = content;
-    }
-    
-    //messages for other employees
-    public Message(Employee sender,Employee recipient,String content){
+    public Message(User sender,User recipient,String subject,String body,boolean isRead){
     	this.sender = sender;
     	this.recipient = recipient;
-    	this.content = content;
+    	this.subject = subject;
+    	this.body = body;
+    	this.isRead = isRead;
     }
     
-    public Employee getRecipient() {
+    public User getRecipient() {
         return this.recipient;
     }
     public void setRecipient(Employee recipient) {
         this.recipient = recipient;
     }
     
-    public Employee getSender() {
+    public User getSender() {
         return this.sender;
     }
     
@@ -37,14 +33,36 @@ public class Message implements Serializable {
         this.sender = sender;
     }
     
-    public String getContent() {
-        return this.content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
     
-    public String toString() {
-    	return sender.toString() + "\nMessage:\n" + content + "\n";
-    }
+	public boolean isRead() {
+		return isRead;
+	}
+
+	public void setRead(boolean isRead) {
+		this.isRead = isRead;
+	}
+
+	@Override
+	public String toString() {
+		return "Message [recipient=" + recipient + ", sender=" + sender + ", subject=" + subject + ", body=" + body
+				+ "]";
+	}
+   
+	
+  
 }

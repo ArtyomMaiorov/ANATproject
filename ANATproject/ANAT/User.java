@@ -16,7 +16,8 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     private UserType userType;
     private boolean logStatus = false;
 	private String address;
-    
+	private List <Message> messages;
+	
     //getter/setter
     public String getID() {
 		return ID;
@@ -90,6 +91,7 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 	public void setLogStatus(boolean logStatus) {
 		this.logStatus = logStatus;
 	}
+	
     //constructor
 	public User() throws IOException {
 		
@@ -194,6 +196,26 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 //          }
 //  	  }
 //    }
+    public void sendMessage(User recipient, String subject, String body) {
+    	Message message = new Message(this,recipient, subject, body,false);
+    	recipient.messages.add(message);
+    }
+    
+    public void readMessages() {
+    	for(Message m:messages) {
+    		if(m.isRead()==false) {
+    			System.out.println(m.getSubject());
+    			System.out.println(m.getBody());
+    			m.setRead(true);
+    		}	
+    	}
+    }
+    
+    public void sendMessageToMultipleUsers(List<User> recipients, String subject, String body) {
+    	for(User recipient:recipients) {
+    		this.sendMessage(recipient, subject, body);
+    	}
+    }
     
 	public boolean equals(Object obj) {
 		if (this == obj)

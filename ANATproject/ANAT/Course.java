@@ -19,43 +19,43 @@ public class Course implements Serializable{
     private Student students;
     
     
-    private String getNameOfCourse() {
+    public String getNameOfCourse() {
         return this.nameOfCourse;
     }
 
-    private void setNameOfCourse(String nameOfCourse) {
+    public void setNameOfCourse(String nameOfCourse) {
         this.nameOfCourse = nameOfCourse;
     }
 
-    private String getCourseID() {
+    public String getCourseID() {
         return this.courseID;
     }
 
-    private void setCourseID(String courseID) {
+    public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
 
-    private Vector getInstructors() {
+    public Vector getInstructors() {
         return this.instructors;
     }
 
-    private void setInstructors(Vector instructors) {
+    public void setInstructors(Vector instructors) {
         this.instructors = instructors;
     }
     
-    private int getCredits() {
+    public int getCredits() {
         return this.credits;
     }
 
-    private void setCredits(Integer credits) {
+    public void setCredits(Integer credits) {
         this.credits = credits;
     }
     
-    private Vector getSchedule() {
+    public Vector getSchedule() {
         return this.schedule;
     }
 
-    private void setSchedule(Vector schedule) {
+    public void setSchedule(Vector schedule) {
         this.schedule = schedule;
     }
     

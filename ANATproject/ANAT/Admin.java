@@ -32,7 +32,7 @@ public class Admin extends User {
     public void setDatabase(Database database) {
         this.database = database;
     }
-    
+    //constructor
     public Admin() throws IOException {
     	super();
     }
