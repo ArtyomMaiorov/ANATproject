@@ -90,14 +90,14 @@ public class Manager extends Employee implements CanBeResearcher {
         return user.toString();
     }
 
-//    public String viewRequests() {
-//        Vector<Message> requests = database.getRequests();
-//        String result = "";
-//        for(int i=0;i<requests.size();i++) {
-//        	result += requests.get(i).getSender().toString() + " |  " + requests.get(i).getContent() + "\n";
-//        }
-//        return result;
-//    }
+    public String viewRequests() {
+        Vector<Message> requests = database.getRequests();
+        String result = "";
+        for(int i=0;i<requests.size();i++) {
+        	result += requests.get(i).toString();
+        }
+        return result;
+    }
     
    
     public boolean assignCourses() {

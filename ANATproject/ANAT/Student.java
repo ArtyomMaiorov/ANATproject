@@ -1,8 +1,6 @@
 package ANAT;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Student extends User implements CanBeResearcher{
@@ -14,8 +12,9 @@ public class Student extends User implements CanBeResearcher{
     private final static int creditLimit = 21;
     private Degree degree;
     
+    private Hashtable<Course,Journal> journals;
     private Vector<Lesson> schedule; //Schedule of student
-    private Journal journal;
+    private Transcript transcript;
     
     public Student() throws IOException {
     	super();
@@ -78,9 +77,7 @@ public class Student extends User implements CanBeResearcher{
     public void setSchedule( Vector<Lesson> lessons){
     	this.schedule = lessons;
     }
-    public Journal getJournal() {
-    	return this.journal;
-    }
+    
     //                          Operations                                  
     
     public boolean registerToCourse() {
@@ -127,16 +124,29 @@ public class Student extends User implements CanBeResearcher{
         //TODO
     }
     
-    //Here student can check if there are any attendance, then do attendance
+    //Here we go through all courses and checking if there any attendance
     public void doAttendance() {
-        Vector<Date> attLessons = journal.getTimerAttendance();
+    	Enumeration<Course> e = journals.keys();
+        while (e.hasMoreElements()) {
+            Course key = e.nextElement();
+            checkAttendance(journals.get(key));
+        }
+    }
+    //Here student can check if there are any attendance, then do attendance
+    private void checkAttendance(Journal journal) {
+        Vector<Lesson> attLessons = journal.getTimerAttendance();
         if(!attLessons.isEmpty()) {
-        	for(Date date:attLessons) {
-        		journal.setAttendance(date, Attendance.Attended);
+        	for(Lesson lesson:attLessons) {
+        		journal.setAttendance(lesson, Attendance.Attended);
         	}
         }
     }
-   
+    
+    //Here teachers can do attendance for student (Absent or Late)
+    public void doAttendance(Lesson lesson,Attendance att) {
+    	journals.get(lesson.getCourse()).setAttendance(lesson, att);
+    }
+    
     public void viewExamSchedule() {
         //TODO
     }

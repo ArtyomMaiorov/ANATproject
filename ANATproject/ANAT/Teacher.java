@@ -51,11 +51,11 @@ public class Teacher extends Employee  {
     //teacher can do attendance with timer choosing appropriate lesson
     public void doAttendance(Lesson lesson) {
     	int timer = 10;
-    	lesson.attendance(timer);
+    	lesson.attendance(lesson,timer);
     }
     //if student was late, teacher can attend him like LATE
     public void attenedLateStudents(Student student,Lesson lesson) {
-    	student.getJournal().setAttendance(lesson.getDateTime(), Attendance.Late);
+    	student.doAttendance(lesson, Attendance.Late);
     }
     
     public void putMark(Student student, Course course, Mark mark) {
