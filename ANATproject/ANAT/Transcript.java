@@ -4,7 +4,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class Transcript {
-   
+
     public void getTranscript(Hashtable<Course,Journal> journals){
     	
     	Enumeration<Course> e = journals.keys();
@@ -19,6 +19,4 @@ public class Transcript {
         double gpa = (points*course.getCredits())/course.getCredits();
         return gpa;
     }
-    
-    
 }

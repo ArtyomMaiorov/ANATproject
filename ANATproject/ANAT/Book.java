@@ -2,149 +2,56 @@ package ANAT;
 
 import java.io.Serializable;
 import java.util.Date;
-
-/**
-* @generated
-*/
 public class Book implements Serializable{
+	private int id;
+	private String name;
+	private String author;
+	private User ownedBy;
+	private int bookNum;
+	private Date dateOfPurchase;
+	private Date dateToBeReturned;
     
-    /**
-    * @generated
-    */
-    private int id;
-    
-    /**
-    * @generated
-    */
-    private String name;
-    
-    /**
-    * @generated
-    */
-    private String author;
-    
-    /**
-    * @generated
-    */
-    private User ownedBy;
-    
-    /**
-    * @generated
-    */
-    private int bookNum;
-    
-    /**
-    * @generated
-    */
-    private Date dateOfPurchase;
-    
-    /**
-    * @generated
-    */
-    private Date dateToBeReturned;
-    
-
-    /**
-    * @generated
-    */
-    private int getId() {
+    //getter/setter
+	public int getId() {
         return this.id;
     }
-    
-    /**
-    * @generated
-    */
-    private void setId(Integer id) {
+	public void setId(int id) {
         this.id = id;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getName() {
+	public String getName() {
         return this.name;
     }
-    
-    /**
-    * @generated
-    */
-    private void setName(String name) {
+	public void setName(String name) {
         this.name = name;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getAuthor() {
+	public String getAuthor() {
         return this.author;
     }
-    
-    /**
-    * @generated
-    */
-    private void setAuthor(String author) {
+	public void setAuthor(String author) {
         this.author = author;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private User getOwnedBy() {
+	public User getOwnedBy() {
         return this.ownedBy;
     }
-    
-    /**
-    * @generated
-    */
-    private void setOwnedBy(User ownedBy) {
+	public void setOwnedBy(User ownedBy) {
         this.ownedBy = ownedBy;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private int getBookNum() {
+	public int getBookNum() {
         return this.bookNum;
     }
-    
-    /**
-    * @generated
-    */
-    private void setBookNum(Integer bookNum) {
+	public void setBookNum(int bookNum) {
         this.bookNum = bookNum;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Date getDateOfPurchase() {
+	public Date getDateOfPurchase() {
         return this.dateOfPurchase;
     }
-    
-    /**
-    * @generated
-    */
-    private void setDateOfPurchase(Date dateOfPurchase) {
+	public void setDateOfPurchase(Date dateOfPurchase) {
         this.dateOfPurchase = dateOfPurchase;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Date getDateToBeReturned() {
+	public Date getDateToBeReturned() {
         return this.dateToBeReturned;
     }
-    
-    /**
-    * @generated
-    */
-    private void setDateToBeReturned(Date dateToBeReturned) {
+	public void setDateToBeReturned(Date dateToBeReturned) {
         this.dateToBeReturned = dateToBeReturned;
     }  
 }

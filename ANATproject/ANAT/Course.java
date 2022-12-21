@@ -3,83 +3,63 @@ package ANAT;
 import java.io.Serializable;
 import java.util.Vector;
 
-/**
-* @generated
-*/
 public class Course implements Serializable{
 
 	private static final long serialVersionUID = 1L;
     private String nameOfCourse;
     private String courseID;
-    private Vector instructors;
+    private Vector<Teacher> teachers;
     private int credits;
-    private Vector schedule;
-    private Teacher teacher;
-    private Lesson lesson;
-    private Student students;
+    private Vector<Lesson> schedule;
+    private Vector<Student> students;
     
     
-    private String getNameOfCourse() {
+    public String getNameOfCourse() {
         return this.nameOfCourse;
     }
 
-    private void setNameOfCourse(String nameOfCourse) {
+    public void setNameOfCourse(String nameOfCourse) {
         this.nameOfCourse = nameOfCourse;
     }
 
-    private String getCourseID() {
+    public String getCourseID() {
         return this.courseID;
     }
 
-    private void setCourseID(String courseID) {
+    public void setCourseID(String courseID) {
         this.courseID = courseID;
     }
 
-    private Vector getInstructors() {
-        return this.instructors;
+    public Vector<Teacher> getTeachers() {
+        return this.teachers;
     }
 
-    private void setInstructors(Vector instructors) {
-        this.instructors = instructors;
+    public void setInstructors(Vector<Teacher> teachers) {
+        this.teachers = teachers;
     }
     
     public int getCredits() {
         return this.credits;
     }
 
-    private void setCredits(Integer credits) {
+    public void setCredits(Integer credits) {
         this.credits = credits;
     }
     
-    private Vector getSchedule() {
+    public Vector<Lesson> getSchedule() {
         return this.schedule;
     }
 
-    private void setSchedule(Vector schedule) {
+    public void setSchedule(Vector<Lesson> schedule) {
         this.schedule = schedule;
     }
-    
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    public Lesson getLesson() {
-        return this.lesson;
-    }
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-
-    public Student getStudents() {
+    public Vector<Student> getStudents() {
         return this.students;
     }
 
-    public void setStudent(Student students) {
+    public void setStudents(Vector<Student> students) {
         this.students = students;
     }
     
