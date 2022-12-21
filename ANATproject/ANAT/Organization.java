@@ -44,13 +44,13 @@ public class Organization {
 //        }
 
     
-    public void addMembers(Student s) {
+    public void addMembers(Organization name, Student s) {
       this.members.add(s);
     }
     
     public void showMembers() {
       for(int i = 0; i < members.size(); i++) {
-        System.out.println(members.get(i).getFirstName());
+        System.out.println(members.get(i).toString());
       }
     }
     public String toString() {

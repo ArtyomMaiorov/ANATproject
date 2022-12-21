@@ -184,5 +184,8 @@ public class Student extends User implements CanBeResearcher{
             }
     	  }
     }
+    public String toString() {
+    	return "First name:"+ super.getFirstName()+"Last name:"+super.getLastName()+"Faculty"+ this.getFaculty();
+    }
     
 }
