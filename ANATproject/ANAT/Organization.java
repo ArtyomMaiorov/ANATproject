@@ -3,51 +3,58 @@ package ANAT;
 import java.util.Vector;
 
 public class Organization {
-	
+  
     private String nameOrganization;
     private Student head;
-    
     
     Vector<Student> members;
     {
         members = new Vector<Student>();
     }
-    
     public Organization() {}
     
     public Organization(String name) {
-    	this.nameOrganization = name;
+      this.nameOrganization = name;
     }
     
-    public String getNameOrganization() {
+    private String getNameOrganization() {
         return this.nameOrganization;
     }
    
-    public void setNameOrganization(String nameOrganization) {
-        this.nameOrganization = nameOrganization;
+    private String setNameOrganization(String nameOrganization) {
+        return this.nameOrganization = nameOrganization;
     }
     
-    public Student getHead() {
+    private Student getHead() {
         return this.head;
     }
     
-    public void setHead(Student head) {
-        this.head = head;
+    private Student setHead(Student head) {
+        return this.head = head;
     }
     
     //                          Operations 
+//    public void addOrganizations(Organization organization) {
+//      listOfOrganizations.add(organization);
+//    }
+//    public void showAllOrganizations() {
+//        for(int i = 0; i < listOfOrganizations.size(); i++) {
+//          System.out.println(listOfOrganizations.get(i));
+//        }
+//        }
     
-    public void addMembers(Student student) {
-    	members.add(student);
+    
+    public void addMembers(Organization organization, Student student) {
+      members.add(student);
     }
     
     public void showMembers() {
       for(int i = 0; i < members.size(); i++) {
-        System.out.println(members.get(i).toString());
+        System.out.println(members.get(i).getFirstName());
       }
     }
     public String toString() {
-    	return nameOrganization;
+      return nameOrganization;
     }
 
 }

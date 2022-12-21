@@ -30,7 +30,10 @@ public class Database implements Serializable{
     	logFiles = new TreeMap<User, String>();
 //    	messages = new HashTable<String, LinkedList<Message>>();
     }
-    
+    Vector<Organization> listOfOrganizations;
+    {
+      listOfOrganizations = new Vector<Organization>();
+    }
     
     public Database() {}
     public static Database getInstance() {
