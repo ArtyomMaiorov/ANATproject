@@ -42,10 +42,10 @@ public class Organization {
 //          System.out.println(listOfOrganizations.get(i));
 //        }
 //        }
+
     
-    
-    public void addMembers(Organization organization, Student student) {
-      members.add(student);
+    public void addMembers(Student s) {
+      this.members.add(s);
     }
     
     public void showMembers() {

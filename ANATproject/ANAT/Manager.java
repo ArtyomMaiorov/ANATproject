@@ -82,7 +82,9 @@ public class Manager extends Employee implements CanBeResearcher {
     
     
     
-    
+    public void approveOrganization(Organization o) {
+    	database.addOrganization(o);
+    }
     
     public String viewInfo(User user) {
         return user.toString();

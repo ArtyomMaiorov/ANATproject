@@ -14,7 +14,7 @@ public class Database implements Serializable{
     private TreeSet<Course> courses;
     private TreeMap<Student, Book> books;
     private TreeMap<User,String> logFiles; 
-    
+    public Vector<Organization> listOfOrganizations;
      Vector<News> newsWall =  new Vector<News>();//we can add/delete/update news and show them
     private static Vector<Message> requests; //managers will be able to get all requests
 //    private static HashTable<String, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
@@ -28,12 +28,10 @@ public class Database implements Serializable{
     	courses = new TreeSet<Course>();
     	books = new TreeMap<Student, Book>();
     	logFiles = new TreeMap<User, String>();
+    	listOfOrganizations = new Vector<Organization>();
 //    	messages = new HashTable<String, LinkedList<Message>>();
     }
-    Vector<Organization> listOfOrganizations;
-    {
-      listOfOrganizations = new Vector<Organization>();
-    }
+    
     
     public Database() {}
     public static Database getInstance() {
@@ -111,6 +109,7 @@ public class Database implements Serializable{
     public TreeMap<User, String> getAllLogs() {
         return this.logFiles;
     }
+    
 //    public Vector<News> getNewsWall() {
 //		return newsWall;
 //	}
@@ -124,6 +123,10 @@ public class Database implements Serializable{
 		this.requests = requests;
 	}
     
+	public void addOrganization(Organization o) {
+		this.listOfOrganizations.add(o);
+	}
+	
     public void saveDatabase() throws IOException {
     	File file = new File("database.txt");
     	file.createNewFile();
