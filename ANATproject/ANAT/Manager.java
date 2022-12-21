@@ -6,7 +6,7 @@ public class Manager extends Employee implements CanBeResearcher {
 
     private static final long serialVersionUID = 1L;
 	private ManagerType managerType;       
-    private Database database = new Database();
+    private Database database = Database.getInstance();
     private Transcript transcript;   
     private Organization organization;  
     

@@ -20,16 +20,16 @@ public class DriverClass {
 //		System.out.println(db);
 //		System.out.println(db.getAllStudents().toString());
 //		Database.login("artmay", "123456f", 0);
-//		Student S1 = new Student();
-//		Student S2 = new Student();
-//		System.out.println(S1);
-//		S1.sendMessage(S2,"title", "smth");
-//		S2.readMessages();
-		Manager m = new Manager();
-		m.addNews("Уважаемые читатели!", "С 4 ЯНВАРЯ 2018 ГОДА ВЗИМАЮТСЯ ШТРАФНЫЕ САНКЦИИ ЗА КАЖДЫЙ ДЕНЬ ЗАДЕРЖКИ ВОЗВРАТА КНИГ (100 тенге в день за одну книгу).");
-		m.addNews("ПАМЯТКА ПО ОПЛАТУ", "...");
-		
-		m.showNews();
+		Student S1 = new Student();
+		Student S2 = new Student();
+		System.out.println(S1);
+		S1.sendMessage(S2,"title", "smth");
+		S2.readMessages();
+//		Manager m = new Manager();
+//		m.addNews("Уважаемые читатели!", "С 4 ЯНВАРЯ 2018 ГОДА ВЗИМАЮТСЯ ШТРАФНЫЕ САНКЦИИ ЗА КАЖДЫЙ ДЕНЬ ЗАДЕРЖКИ ВОЗВРАТА КНИГ (100 тенге в день за одну книгу).");
+//		m.addNews("ПАМЯТКА ПО ОПЛАТУ", "...");
+//		
+//		m.showNews();
 	}
 }
 

@@ -129,22 +129,22 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 	}
     //                          Operations                                  
     
-//    public String login() {
-//        if(login.equals(this.login) && password.equals(this.password)) {
-//        	logStatus = true;
-//            return "Succesfully login";
-//            
-//        }
-//        return "Try again!Wrong login or password";
-//    }
-//    
-//    public void logout() {
-//    	if(logStatus) {
-//    		logStatus = false;
-//    		System.out.println("Succesfully logout");
-//    	}
-//    	else System.out.println("You need to login,then you can logout!");	
-//    }
+    public String login() {
+        if(login.equals(this.login) && password.equals(this.password)) {
+        	logStatus = true;
+            return "Succesfully login";
+            
+        }
+        return "Try again!Wrong login or password";
+    }
+    
+    public void logout() {
+    	if(logStatus) {
+    		logStatus = false;
+    		System.out.println("Succesfully logout");
+    	}
+    	else System.out.println("You need to login,then you can logout!");	
+    }
   	  
     public boolean changePassword(String oldPassword, String newPassword) {
         if(oldPassword.equals(this.password)) {
