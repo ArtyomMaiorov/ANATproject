@@ -95,9 +95,8 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 	
     //constructor
 	public User() throws IOException {
+		UserType temp = null;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		System.out.println("Enter user's ID");
-//		this.ID = br.readLine();
 		System.out.println("Enter user's first name");
 		this.firstName = br.readLine();
 		System.out.println("Enter user's last name");
@@ -122,49 +121,47 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 		this.password = br.readLine();
 		System.out.println("Enter user's user type");
 		try {
-			this.userType = UserType.valueOf(br.readLine());
+			temp = UserType.valueOf(br.readLine());
+			this.userType = temp;
 		} catch(Exception e) {
 			System.out.println("Wrong user type");
 		}
-		System.out.println("Enter student's entrance year");
+		System.out.println("Enter user's entrance year");
 		this.entranceYear= br.read();
-		this.ID = this.generateUserId(this.userType, this.entranceYear);
+		
+		this.ID = generateUserId(temp, this.entranceYear);
 	}
     //                          Operations                                  
   	  
     public String generateUserId(UserType userType, int entranceYear) {
-    	String prefix = entranceYear + "";
-    	switch(userType) {
-    	case STUDENT:
+    	String id = "";
+    	if(userType == UserType.STUDENT) {
     		Student s = (Student)this;
-    		switch(s.getDegree()) {
-    			case BACHELOR:
-    				prefix += "B";
-    				break;
-    			case MASTER:
-    				prefix += "M";
-    				break;
-    			case PHD:
-    				prefix += "P";
-    				break;
+    		id += String.format("%02d", entranceYear) + getDegreeChar(s.getDegree()) + String.format("%06d", idCounter);
     		}
-    		break;
-    	case TEACHER:
-    		prefix += "T";
-    		break;
-    	case MANAGER:
-    		prefix += "M";
-    		break;
-    	case ADMIN:
-    		prefix += "A";
-    		break;
-    	case LIBRARIAN:
-    		prefix += "L";
-    		break;	
-    	}
+    	else if(userType == UserType.TEACHER)	
+    		id += String.format("%02d", entranceYear) + "T" + String.format("%06d", idCounter);
+    	else if(userType == UserType.MANAGER)
+    		id += String.format("%02d", entranceYear) + "M" + String.format("%06d", idCounter);
+    	else if(userType == UserType.ADMIN)
+    		id += String.format("%02d", entranceYear) + "A" + String.format("%06d", idCounter);
+    	else if(userType == UserType.LIBRARIAN)
+    		id += String.format("%02d", entranceYear) + "L" + String.format("%06d", idCounter);
+    	
     	idCounter++;
-    	String id = String.format("%06d", idCounter);
-    	return prefix + id;
+    	return id;
+    }
+    
+    private char getDegreeChar(Degree d) {
+        if (d == Degree.BACHELOR) {
+            return 'B';
+        } else if (d == Degree.MASTER) {
+            return 'M';
+        } else if (d == Degree.PHD) {
+            return 'P';
+        } else {
+            return '?';
+        }
     }
     public void viewNews() {
     	//TODO
@@ -179,21 +176,22 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     public abstract void showInterface() throws IOException;
     
     public void showBasicInterface() throws IOException {
-  	  while(true) {
+  	  while(Database.currentUser!=null) {
           System.out.println("USER PAGE\n" + "Enter number (S to stop choosing): ");
-          System.out.println("1. Logout");
-          System.out.println("2. View 2nd menu");
-          System.out.println("3. Change Password");
-          System.out.println("4. View News");
+          System.out.println("1 - Logout");
+          System.out.println("2 - View 2nd menu");
+          System.out.println("3 - Change Password");
+          System.out.println("4 - View News");
   		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
           String s = br.readLine();
-          if(s.equals("S")) {
+          if(s.equalsIgnoreCase("Q")) {
              break;
           }
           else 
           {
         	  if(s.equals("1")) {
-        		  Database.logout();;
+        		  Database.logout();
+        		  break;
         		  }
         	  if(s.equals("2")) {
         		  break;

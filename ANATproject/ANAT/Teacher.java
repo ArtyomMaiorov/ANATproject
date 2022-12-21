@@ -78,7 +78,7 @@ public class Teacher extends Employee  {
     	if(dbStudent == null) System.out.println("Student not found");
     	else if (dbCourse == null) System.out.println("Course not found");
     	else {
-    		dbStudent.addMark(mark);
+    		dbCourse.addMark(dbStudent, mark);
     		System.out.println("Mark put successfully");
     	}
     }

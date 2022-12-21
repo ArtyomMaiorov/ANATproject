@@ -11,24 +11,26 @@ public class DriverClass {
 		Database db = Database.getInstance();
 		db.loadDatabase();
 		db = Database.getInstance();
-		User user = Database.currentUser;
-		
-		System.out.println(db.getAllAdmins());
 
 		
+		System.out.println(db.toString());
+		
 		while(running) {
-			while(user==null) {
+			User user = Database.currentUser;
+
+			if(user == null) {
 				System.out.println("Enter username");
 				String username = br.readLine();
 				System.out.println("Enter password");
 				String password = br.readLine();
 				db.login(username, password);
-				user = db.currentUser;
+				user = Database.currentUser;
 			}
 			user.showInterface();
-			
+
 		}
-		
+		db.saveDatabase();
+		System.out.println(db.toString());
 //		Student Artyom = new Student();
 //		Database db = Database.getInstance();
 //		

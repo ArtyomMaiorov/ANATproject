@@ -52,10 +52,12 @@ public class Employee extends User {
     public String toString() {
 		return super.toString() + "salary:"+getSalary();
 	}
-
-	public void showInterface() {
+	@Override
+	public void showInterface() throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
     
 }

@@ -1,18 +1,46 @@
 package ANAT;
 
-import java.io.Serializable;
-import java.util.Vector;
+import java.io.*;
+import java.util.*;
 
-public class Course implements Serializable{
-
+public class Course implements Serializable, Comparable<Course>{
 	private static final long serialVersionUID = 1L;
+	
     private String nameOfCourse;
     private String courseID;
     private Vector<Teacher> teachers;
+    private Faculty faculty;
+    private int maxStudents;
     private int credits;
     private Vector<Lesson> schedule;
-    private Vector<Student> students;
+    private TreeMap<Student, Mark> studentsAndMarks;
     
+    {
+    	this.studentsAndMarks = new TreeMap<Student, Mark>();
+    	this.schedule = new Vector<Lesson>();
+    }
+    private boolean isFull;
+
+    public Course() throws IOException {
+    	InputStreamReader r = new InputStreamReader(System.in);
+    	BufferedReader br = new BufferedReader(r);
+    	System.out.println("Enter course's faculty");
+		try {
+			this.faculty = Faculty.valueOf(br.readLine());	
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Wrong faculty");
+		}
+		System.out.println("Enter course's name ");
+		this.nameOfCourse = br.readLine();
+		System.out.println("Enter course's id");
+		this.courseID = br.readLine();
+		System.out.println("Enter course capacity");
+		this.maxStudents = br.read();
+		System.out.println("Enter course's credit");
+		this.credits = br.read();
+		this.isFull = studentsAndMarks.size() > maxStudents;
+    }
     
     public String getNameOfCourse() {
         return this.nameOfCourse;
@@ -22,7 +50,31 @@ public class Course implements Serializable{
         this.nameOfCourse = nameOfCourse;
     }
 
-    public String getCourseID() {
+    public boolean isFull() {
+		return this.isFull;
+	}
+
+	public void setFull(boolean isFull) {
+		this.isFull = isFull;
+	}
+
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
+	public int getMaxStudents() {
+		return maxStudents;
+	}
+
+	public void setMaxStudents(int maxStudents) {
+		this.maxStudents = maxStudents;
+	}
+
+	public String getCourseID() {
         return this.courseID;
     }
 
@@ -55,23 +107,31 @@ public class Course implements Serializable{
     }
 
 
-    public Vector<Student> getStudents() {
-        return this.students;
+    public TreeMap<Student, Mark> getStudentsAndMarks() {
+        return this.studentsAndMarks;
     }
 
-    public void setStudents(Vector<Student> students) {
-        this.students = students;
+    public void setStudents(TreeMap<Student, Mark> studentsAndMarks) {
+        this.studentsAndMarks = studentsAndMarks;
     }
     
     
 
     //                          Operations                                  
-
-    public String toString() {
-        return this.nameOfCourse;
+    public void addMark(Student student, Mark mark) {
+    	this.studentsAndMarks.put(student, mark);
     }
 
-    public String viewInstructors() {
+    
+
+    @Override
+	public String toString() {
+		return "Course [nameOfCourse=" + nameOfCourse + ", courseID=" + courseID + ", teachers=" + teachers
+				+ ", faculty=" + faculty + ", maxStudents=" + maxStudents + ", credits=" + credits + ", schedule="
+				+ schedule + ", studentsAndMarks=" + studentsAndMarks + ", isFull=" + isFull + "]";
+	}
+
+	public String viewInstructors() {
         //TODO
         return "";
     }
@@ -80,6 +140,15 @@ public class Course implements Serializable{
         //TODO
         return 0;
     }
+
+	@Override
+	public int compareTo(Course o) {
+		if(this.studentsAndMarks.keySet().size()>o.studentsAndMarks.keySet().size())
+			return 1;
+		else if(this.studentsAndMarks.keySet().size()<o.studentsAndMarks.keySet().size())
+			return -1;
+		return 0;
+	}
     
     
 }

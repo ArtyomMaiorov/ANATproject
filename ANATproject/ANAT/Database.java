@@ -81,6 +81,9 @@ public class Database implements Serializable{
     public void setLibrarian(Librarian librarian) {
     	librarians.add(librarian);
     }
+    public void setCourses(Course course) {
+    	courses.add(course);
+    }
     
     public TreeSet<Student> getAllStudents() {
         return this.students;
@@ -161,51 +164,51 @@ public class Database implements Serializable{
     public void login(String login, String password) throws ClassNotFoundException, IOException, UnsuccessfulLoginException {
     	loadDatabase();
     	boolean isLogedIn = false;
+    	
     	for(Student student : students) {
 			if(student.getLogin().equals(login) && student.getPassword().equals(password)) {
 				currentUser = student;
 				isLogedIn = true;
-			} else {
-		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-			}
+				return;
+			} 
 		}
     		
     	for(Teacher teacher : teachers) {
 			if(teacher.getLogin().equals(login) && teacher.getPassword().equals(password)) {
 				currentUser = teacher;
 				isLogedIn = true;
-			} else {
-		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-			}
+				return;
+			} 
 		}
     	for(Manager manager: managers) {
 			if(manager.getLogin().equals(login) && manager.getPassword().equals(password)) {
 				currentUser = manager;
 				isLogedIn = true;
-			} else {
-		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-			}
+				return;
+			} 
 		}
     	for(Admin admin: admins) {
 			if(admin.getLogin().equals(login) && admin.getPassword().equals(password)) {
 				currentUser = admin;
 				isLogedIn = true;
-			} else {
-		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-			}
+				return;
+			} 
 		}
     	for(Librarian librarian: librarians) {
 			if(librarian.getLogin().equals(login) && librarian.getPassword().equals(password)) {
 				currentUser = librarian;
 				isLogedIn = true;
-			} else {
-		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-			}
+				return;
+			} 
 		}
-
     	
-    	String success = (isLogedIn) ? "successful" : "not successful";
-    	System.out.println("Log in is " + success);
+    	if(!isLogedIn) {
+	        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+
+    	} else {
+        	System.out.println("Log in is successful");
+
+    	}
     }
 
     public static void logout() {
@@ -220,9 +223,9 @@ public class Database implements Serializable{
     }
 	@Override
 	public String toString() {
-		return "Database [students=" + students + ", teachers=" + teachers + ", admins=" + admins + ", managers="
-				+ managers + ", librarians=" + librarians + ", courses=" + courses + ", books=" + books + ", logFiles="
-				+ logFiles + ", newsWall=" + newsWall + "]";
+		return "Database [students=" + students + "\n, teachers=" + teachers + "\n, admins=" + admins + "\n, managers="
+				+ managers + "\n, librarians=" + librarians + "\n, courses=" + courses + "\n, books=" + books + "\n, logFiles="
+				+ logFiles + "\n, newsWall=" + newsWall + "]";
 	}
 	
     

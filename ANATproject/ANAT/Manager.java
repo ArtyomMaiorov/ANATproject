@@ -1,29 +1,24 @@
 package ANAT;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 public class Manager extends Employee implements CanBeResearcher {
 
     private static final long serialVersionUID = 1L;
-	private ManagerType managerType;       
     private Database database = Database.getInstance();
     private Transcript transcript;   
     private Organization organization;  
     
-     Vector<UserType> usersToAdd = new Vector<UserType>();
+    Vector<UserType> usersToAdd = new Vector<UserType>();
     
     public Manager() throws IOException {
     	super();
     }
     
     //Getters and Setters
-    public ManagerType getManagerType() {
-        return this.managerType;
-    }
-   
-    public void setManagerType(ManagerType managerType) {
-        this.managerType = managerType;
-    }
+    
      
     public Transcript getTranscript() {
         return this.transcript;
@@ -43,6 +38,21 @@ public class Manager extends Employee implements CanBeResearcher {
 
     
    //                                    Operations
+    
+    public static boolean approveRegistration(Student student, Course course) {
+    	System.out.println(course.isFull());
+    	if(!course.isFull()) {
+    		if(course.getFaculty().equals(student.getFaculty())) {
+    			if(student.getCreditLimit() >= student.getTotalCredits()) {
+    				return true;
+    			}
+    			else System.out.println("Too many credits");
+    		}
+    		else System.out.println("Faculty doesn't match, register for an elective");
+    	}
+    	else System.out.println("Course is full");
+    	return false;
+    }
     
     //managing news 
     public void addNews(String title,String content) {
@@ -112,14 +122,10 @@ public class Manager extends Employee implements CanBeResearcher {
     }
     
  
-    public boolean approveStudentRegistration() {
-        //TODO
-        return false;
-    }
     
 
     public String toString() {
-        return super.toString() + "Manager's type: " + managerType.toString()+"\n";
+        return super.toString();
     }
     
     public void addUsersToList(UserType user) {
@@ -135,5 +141,49 @@ public class Manager extends Employee implements CanBeResearcher {
     		}
     	}
     }
+    
+    public void showInterface() throws IOException {
+   	 super.showBasicInterface();
+   	 while(true) {
+           System.out.println("MANAGER PAGE\n Enter number (Q to stop choosing): ");
+           System.out.println("1 - Go to User Menu");
+           System.out.println("2 - Create Course");
+           System.out.println("3 - Delete Course");
+           System.out.println("4 - ");
+           
+           BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+           String s = br.readLine();
+           if(s.equalsIgnoreCase("Q")) {
+              System.exit(0);
+           }
+           else 
+           {
+        	   if(s.equals("1")) this.showBasicInterface();
+        	   
+               if(s.equals("2")) {
+               		Course course = new Course();
+               		Database.getInstance().setCourses(course);
+                    Database.getInstance().saveDatabase();
+
+               }
+               else if(s.equals("3")) {
+            	Course courseToBeRemoved = null;
+            	System.out.println("Here is a list of all available course: " + Database.getInstance().getAllCourses());
+               	System.out.println("Which one do you want to remove?");
+               	String enteredCourseName = br.readLine();
+            	for(Course c : Database.getInstance().getAllCourses()) {
+            		if(c.getNameOfCourse().equals(enteredCourseName)) {
+            			courseToBeRemoved = c;
+            		}
+            	}
+            	   Database.getInstance().getAllCourses().remove(courseToBeRemoved);
+            	   System.out.println("Course removed successfully!");
+               }
+           }
+           Database.getInstance().saveDatabase();
+
+   	  }
+   }
+    
     
 }

@@ -5,13 +5,13 @@ import java.util.*;
 
 public class Student extends User implements CanBeResearcher{
     private static final long serialVersionUID = 1L;
+    private final static int creditLimit = 21;
+
     private Faculty faculty;
     private double GPA; 
-    private Vector<?> courses;
     private Major major;
-    private final static int creditLimit = 21;
     private Degree degree;
-    
+    private int totalCredits = 0;
     private Hashtable<Course,Journal> journals;
     private Vector<Lesson> schedule; //Schedule of student
     private Transcript transcript;
@@ -53,12 +53,6 @@ public class Student extends User implements CanBeResearcher{
     public void setGPA(double GPA) {
         this.GPA = GPA;
     }
-    public Vector<?> getCourses() {
-        return this.courses;
-    }
-    public void setCourses(Vector<?> courses) {
-        this.courses = courses;
-    }
     public Major getMajor() {
         return this.major;
     }
@@ -80,12 +74,18 @@ public class Student extends User implements CanBeResearcher{
     
     //                          Operations                                  
     
-    public boolean registerToCourse() {
-        //TODO
-        return false;
-    }
+    
+    
       
-    public void viewInfoAboutTeacher(Teacher teacher) {
+    public int getTotalCredits() {
+		return totalCredits;
+	}
+
+	public void setTotalCredits(int totalCredits) {
+		this.totalCredits = totalCredits;
+	}
+
+	public void viewInfoAboutTeacher(Teacher teacher) {
         //TODO
     }   
     public void viewMarks() {
@@ -111,6 +111,16 @@ public class Student extends User implements CanBeResearcher{
    
     public void viewCourses() {
         //TODO
+    }
+    
+    public boolean registerForCourse(Course course) {
+        this.totalCredits += course.getCredits();
+        
+        if(Manager.approveRegistration(this, course)) {
+        	
+        	course.getStudentsAndMarks().put(this, new Mark());
+        }
+        return false;
     }
     
     //Show list of lessons, which student has
@@ -167,35 +177,41 @@ public class Student extends User implements CanBeResearcher{
     public void showInterface() throws IOException {
     	 super.showBasicInterface();
     	 while(true) {
-            System.out.println("Enter number(S to stop choosing) (Student): ");
-            System.out.println("1.register To Course");
-            System.out.println("2.view Info About Teacher");
-            System.out.println("3.view Marks");
-            System.out.println("4.rate Teacher");
-            System.out.println("5.get Transcript");
-            System.out.println("6.view Student Organizations");
-            System.out.println("7.drop Course");
-            System.out.println("8.view Courses");
-            System.out.println("9.view Schedule");
-            System.out.println("10.view Transcript");
-            System.out.println("11.view Attendance");
-            System.out.println("12.view Exam Schedule");
-            System.out.println("13.view Attestation");
-            System.out.println("14.count GPA");
-            System.out.println("15.join Organization");
-            Scanner input = new Scanner(System.in);
-            String s = input.next();
-            if(s.equals("S")) {
+            System.out.println("STUDENT PAGE\n Enter number (Q to stop choosing): ");
+            System.out.println("1 - Register For a Course");
+            System.out.println("2 - View Marks");
+            System.out.println("3 - Rate Teacher");
+            System.out.println("4 - Get Transcript");
+            System.out.println("5 - View Student Organizations");
+            System.out.println("7 - Drop Course");
+            System.out.println("8 - View Courses");
+            System.out.println("9 - View Schedule");
+            System.out.println("10 - View Transcript");
+            System.out.println("11 - Count GPA");
+            System.out.println("15 - Join Organization");
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String s = br.readLine();
+            if(s.equalsIgnoreCase("Q")) {
                System.exit(0);
             }
             else 
             {
-                //TODO
+                if(s.equals("1")) {
+                	System.out.println("Here is a list of all available course: " + Database.getInstance().getAllCourses());
+                	System.out.println("Which one do you want to register for?");
+                	String enteredCourseName = br.readLine();
+                	for(Course c : Database.getInstance().getAllCourses()) {
+                		if(c.getNameOfCourse().equals(enteredCourseName)) {
+                			this.registerForCourse(c);
+                		}
+                	}
+                }
             }
     	  }
     }
+    
     public String toString() {
-    	return "First name:"+ super.getFirstName()+"Last name:"+super.getLastName()+"Faculty"+ this.getFaculty();
+    	return super.toString() + " First name:"+ super.getFirstName()+"Last name:"+super.getLastName()+"Faculty"+ this.getFaculty();
     }
     
 }

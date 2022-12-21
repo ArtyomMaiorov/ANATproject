@@ -1,23 +1,14 @@
 package ANAT;
 public class Mark {
-    private Course courseName;
-    private double points;
-    private double firstAtt;
-    private double secondAtt;
-    private double finalScore;
-    private double totalAtt;
+    private double points; // /100
+    private double firstAtt; // /30
+    private double secondAtt; // /30
+    private double finalScore; // /40
+    private double totalAtt; // /60
     private String letterGrade;
-    private Teacher teacher;
-    private Database database;
-    private Student student;
+    
     
     //setter/getter
-    public Course getCourseName() {
-        return this.courseName;
-    }
-    public void setCourseName(Course courseName) {
-        this.courseName = courseName;
-    }
     public double getPoints() {
         return this.points;
     }
@@ -54,42 +45,67 @@ public class Mark {
     public void setLetterGrade(String letterGrade) {
         this.letterGrade = letterGrade;
     }
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    public Student getStudent() {
-        return this.student;
-    }
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-    public Database getDatabase() {
-        return this.database;
-    }
-    public void setDatabase(Database database) {
-        this.database = database;
-    }
-    
-    
+   
+    public Mark() {};
 
-    //                          Operations                                  
+    public Mark(double firstAtt) {
+		super();
+		this.firstAtt = firstAtt;
+	}
     
-    public String convertToNumber() {
-        //TODO
-        return "";
+	public Mark(double firstAtt, double secondAtt, double totalAtt) {
+		super();
+		this.firstAtt = firstAtt;
+		this.secondAtt = secondAtt;
+		this.totalAtt = totalAtt;
+	}
+	
+	public Mark(double points, double firstAtt, double secondAtt, double finalScore, double totalAtt) {
+		super();
+		this.points = points;
+		this.firstAtt = firstAtt;
+		this.secondAtt = secondAtt;
+		this.finalScore = finalScore;
+		this.totalAtt = totalAtt;
+	}
+	
+    public Mark(double points, double firstAtt, double secondAtt, double finalScore, double totalAtt,
+			String letterGrade) {
+		super();
+		this.points = points;
+		this.firstAtt = firstAtt;
+		this.secondAtt = secondAtt;
+		this.finalScore = finalScore;
+		this.totalAtt = totalAtt;
+		this.letterGrade = letterGrade;
+	}
+    
+    //  Operations                                  
+    
+    
+	public String convertToGrade() {
+        if(points >= 90 && points <= 100) {
+        	return "A";
+        } else if (points >= 80 && points <= 89) {
+            return "B";
+        } else if (points >= 70 && points <= 79) {
+            return "C";
+        } else if (points >= 60 && points <= 69) {
+            return "D";
+        } else if (points >= 0 && points <= 59) {
+            return "F";
+        } else {
+            return "Error: Invalid number of points.";
+        }
+        
     }
     
     public double getTotalPoints() {
-        //TODO
-        return 0.0;
+        return this.points;
     }
     
     public String getLetterScore() {
-        //TODO
-        return "";
+        return this.letterGrade;
     }
     
     
