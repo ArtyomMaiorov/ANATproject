@@ -56,9 +56,9 @@ public class Lesson {
     //                          Operations                                  
     
     // for all students from the list above, teacher can do attendance
-    public void attendance(double timer) {
+    public void attendance(Lesson lesson ,double timer) {
     	for(Student student:students) {
-    		student.getJournal().setAttendance(dateTime, Attendance.Absent);
+    		student.doAttendance(lesson,Attendance.Absent);
     	}
     }
     public boolean deleteLesson() {
