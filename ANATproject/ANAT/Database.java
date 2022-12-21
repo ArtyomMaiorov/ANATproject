@@ -15,17 +15,17 @@ public class Database implements Serializable{
     private static TreeMap<Student, Book> books;
     private static TreeMap<User,String> logFiles; 
     
-    private static Vector<News> newsWall;//we can add/delete/update news and show them
+     Vector<News> newsWall =  new Vector<News>();//we can add/delete/update news and show them
     private static Vector<Message> requests; //managers will be able to get all requests
-    private static Hashtable<String, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
+//    private static HashTable<String, LinkedList<Message>> messages; // by id of employee, we can get all messages which he/she/it retrieved
      
     {
     	students = new TreeSet<Student>();
-    	messages = new Hashtable<String, LinkedList<Message>>();
+//    	messages = new HashTable<String, LinkedList<Message>>();
     }
     
     
-    private Database() {}
+    public Database() {}
     public static Database getInstance() {
 
         // create object if it's not already created
@@ -39,16 +39,6 @@ public class Database implements Serializable{
     
     
     //                          Operations  
-    
-    
-    public void addMessage(String employeeID,Message message) {
-    	//employeeID is receiver
-    	messages.get(employeeID).offer(message);
-    }
-    
-    public LinkedList<Message> getMessages(String employeeID) {
-    	return messages.get(employeeID);
-    }
     
     public void addUser(User newUser) {
     	UserType user = newUser.getUserType();
@@ -108,12 +98,12 @@ public class Database implements Serializable{
     public TreeMap<User, String> getAllLogs() {
         return this.logFiles;
     }
-    public Vector<News> getNewsWall() {
-		return newsWall;
-	}
-	public void setNewsWall(Vector<News> newsWall) {
-		this.newsWall = newsWall;
-	}
+//    public Vector<News> getNewsWall() {
+//		return newsWall;
+//	}
+//	public void setNewsWall(Vector<News> newsWall) {
+//		Database.newsWall = newsWall;
+//	}
 	public Vector<Message> getRequests() {
 		return requests;
 	}
