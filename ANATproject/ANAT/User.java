@@ -3,7 +3,9 @@ import java.io.*;
 import java.util.*;
 public abstract class User implements Serializable, Comparable<User>, CanBeResearcher {
 	private static final long serialVersionUID = 1L;
+	private static int idCounter = 0;
 	private String ID;    
+	private int entranceYear;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -15,7 +17,6 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     private String password;
     private UserType userType;
     private boolean logStatus = false;
-	private String address;
 	private Vector <Message> messages = new Vector<Message>();
 	
     //getter/setter
@@ -94,16 +95,15 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 	
     //constructor
 	public User() throws IOException {
-		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Enter user's ID");
-		this.ID = br.readLine();
-		System.out.println("Enter user's email");
-		this.email= br.readLine();
+//		System.out.println("Enter user's ID");
+//		this.ID = br.readLine();
 		System.out.println("Enter user's first name");
 		this.firstName = br.readLine();
 		System.out.println("Enter user's last name");
 		this.lastName = br.readLine();
+		System.out.println("Enter user's email");
+		this.email= br.readLine();
 		System.out.println("Enter user's middle name");
 		this.middleName = br.readLine();
 		System.out.println("Enter user's birth date");
@@ -126,31 +126,45 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 		} catch(Exception e) {
 			System.out.println("Wrong user type");
 		}
+		System.out.println("Enter student's entrance year");
+		this.entranceYear= br.read();
+		this.ID = this.generateUserId(this.userType, this.entranceYear);
 	}
     //                          Operations                                  
-    
-    public String login() {
-        if(login.equals(this.login) && password.equals(this.password)) {
-        	logStatus = true;
-            return "Succesfully login";
-            
-        }
-        return "Try again!Wrong login or password";
-    }
-    
-    public void logout() {
-    	if(logStatus) {
-    		logStatus = false;
-    		System.out.println("Succesfully logout");
-    	}
-    	else System.out.println("You need to login,then you can logout!");	
-    }
   	  
-    public boolean changePassword(String oldPassword, String newPassword) {
-        if(oldPassword.equals(this.password)) {
-            password = newPassword;
-            return true;
-        }return false;
+    public String generateUserId(UserType userType, int entranceYear) {
+    	String prefix = entranceYear + "";
+    	switch(userType) {
+    	case STUDENT:
+    		Student s = (Student)this;
+    		switch(s.getDegree()) {
+    			case BACHELOR:
+    				prefix += "B";
+    				break;
+    			case MASTER:
+    				prefix += "M";
+    				break;
+    			case PHD:
+    				prefix += "P";
+    				break;
+    		}
+    		break;
+    	case TEACHER:
+    		prefix += "T";
+    		break;
+    	case MANAGER:
+    		prefix += "M";
+    		break;
+    	case ADMIN:
+    		prefix += "A";
+    		break;
+    	case LIBRARIAN:
+    		prefix += "L";
+    		break;	
+    	}
+    	idCounter++;
+    	String id = String.format("%06d", idCounter);
+    	return prefix + id;
     }
     public void viewNews() {
     	//TODO
@@ -161,41 +175,44 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     public void addLog() {
     	//TODO
     }
-    public abstract void showInterface();
     
-//    public void showBasicInterface() {
-//  	  while(true) {
-//          System.out.println("(User)\n" + "Enter number(S to stop choosing): ");
-//          System.out.println("1.Login");
-//          System.out.println("2.Logout");
-//          System.out.println("3.Change Password");
-//          System.out.println("4.View News");
-//          Scanner input = new Scanner(System.in);
-//          String s = input.next();
-//          if(s.equals("S")) {
-//             break;
-//          }
-//          else 
-//          {
-//        	  if(s.equals("1")) {
-//        		  this.login();
-//        		  }
-//        	  if(s.equals("2")) {
-//        		  this.logout();
-//        		  }
-//        	  if(s.equals("3")) {
-//        		  System.out.println("Enter old Password  to change");
-//                  String oldPassword = input.next();
-//        		  System.out.println("Enter new Password  to change");
-//                  String newPassword = input.next();
-//        		  if(this.changePassword(oldPassword,newPassword)) 
-//        			  System.out.println("Succesfully changed");
-//        		  else System.out.println("Try again!Wrong old password");
-//        	  }
-//        	  if(s.equals("4")) {this.viewNews();}
-//          }
-//  	  }
-//    }
+    public abstract void showInterface() throws IOException;
+    
+    public void showBasicInterface() throws IOException {
+  	  while(true) {
+          System.out.println("USER PAGE\n" + "Enter number (S to stop choosing): ");
+          System.out.println("1. Logout");
+          System.out.println("2. View 2nd menu");
+          System.out.println("3. Change Password");
+          System.out.println("4. View News");
+  		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+          String s = br.readLine();
+          if(s.equals("S")) {
+             break;
+          }
+          else 
+          {
+        	  if(s.equals("1")) {
+        		  Database.logout();;
+        		  }
+        	  if(s.equals("2")) {
+        		  break;
+        		  }
+        	  if(s.equals("3")) {
+        		  System.out.println("Enter old Password  to change");
+                  String oldPassword = br.readLine();
+        		  System.out.println("Enter new Password  to change");
+                  String newPassword = br.readLine();
+        		  if(Database.changePassword(oldPassword,newPassword)) 
+        			  System.out.println("Succesfully changed");
+        		  else System.out.println("Try again!Wrong old password");
+                  continue;
+        	  }
+        	  if(s.equals("4")) {this.viewNews();}
+          }
+  	  }
+    }
+    
     public void sendMessage(User recipient, String subject, String body) {
     	Message message = new Message(this,recipient, subject, body,false);
     	recipient.messages.add(message);
@@ -216,7 +233,13 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     		this.sendMessage(recipient, subject, body);
     	}
     }
-    
+   
+   @Override
+	public int hashCode() {
+		return Objects.hash(ID, birthDate, citizenship, email, entranceYear, firstName, gender, lastName, login,
+				middleName, password, userType);
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -225,14 +248,14 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return ID.equals(other.ID) && gender.equals(other.gender)&& userType.equals(other.userType)&& address.equals(other.address) && birthDate.equals(other.birthDate) && citizenship.equals(other.citizenship) && email.equals(other.email) && firstName.equals(other.firstName) && lastName.equals(other.lastName)  && login.equals(other.login)  && middleName.equals(other.middleName)&&  password.equals(other.password);
+		return Objects.equals(ID, other.ID) && Objects.equals(birthDate, other.birthDate)
+				&& Objects.equals(citizenship, other.citizenship) && Objects.equals(email, other.email)
+				&& entranceYear == other.entranceYear && Objects.equals(firstName, other.firstName)
+				&& gender == other.gender && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(login, other.login) && Objects.equals(middleName, other.middleName)
+				&& Objects.equals(password, other.password) && userType == other.userType;
 	}
-	
-   public int hashCode() {
-        return Objects.hash(ID, firstName, lastName ,middleName ,birthDate, gender,citizenship, email,login, password, userType);
-    }
-   
-   public int compareTo(User user) {
+public int compareTo(User user) {
        return ID.compareTo(user.ID);
    }
    

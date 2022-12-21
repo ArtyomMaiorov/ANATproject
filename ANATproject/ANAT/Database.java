@@ -6,14 +6,14 @@ public class Database implements Serializable{
 	public static User currentUser;
 	private static final long serialVersionUID = 1L;
 	private static Database dbObject;
-	private static TreeSet<Student> students;
-	private static TreeSet<Teacher> teachers;
-    private static HashSet<Admin> admins;
-    private static TreeSet<Manager> managers;  
-    private static TreeSet<Librarian> librarians;
-    private static TreeSet<Course> courses;
-    private static TreeMap<Student, Book> books;
-    private static TreeMap<User,String> logFiles; 
+	private TreeSet<Student> students;
+	private TreeSet<Teacher> teachers;
+    private HashSet<Admin> admins;
+    private TreeSet<Manager> managers;  
+    private TreeSet<Librarian> librarians;
+    private TreeSet<Course> courses;
+    private TreeMap<Student, Book> books;
+    private TreeMap<User,String> logFiles; 
     
      Vector<News> newsWall =  new Vector<News>();//we can add/delete/update news and show them
     private static Vector<Message> requests; //managers will be able to get all requests
@@ -21,6 +21,13 @@ public class Database implements Serializable{
      
     {
     	students = new TreeSet<Student>();
+    	teachers = new TreeSet<Teacher>();
+    	admins = new HashSet<Admin>();
+    	managers = new TreeSet<Manager>();
+    	librarians = new TreeSet<Librarian>();
+    	courses = new TreeSet<Course>();
+    	books = new TreeMap<Student, Book>();
+    	logFiles = new TreeMap<User, String>();
 //    	messages = new HashTable<String, LinkedList<Message>>();
     }
     
@@ -42,14 +49,22 @@ public class Database implements Serializable{
     
     public void addUser(User newUser) {
     	UserType user = newUser.getUserType();
-    	
         if(user == UserType.STUDENT) setStudent((Student) newUser);		
         else if(user == UserType.TEACHER) setTeacher((Teacher) newUser);		
         else if(user == UserType.ADMIN) setAdmin((Admin) newUser);		
         else if(user == UserType.MANAGER) setManager((Manager) newUser);
 		else if(user == UserType.LIBRARIAN) setLibrarian((Librarian) newUser);
-        
     }
+    public boolean deleteUser(User user) {
+    	if(user.getUserType() == UserType.STUDENT) students.remove((Student)user);		
+        else if(user.getUserType() == UserType.TEACHER) teachers.remove((Teacher)user)	;	
+        else if(user.getUserType() == UserType.ADMIN) admins.remove((Admin)user);		
+        else if(user.getUserType() == UserType.MANAGER) managers.remove((Manager)user);
+		else if(user.getUserType() == UserType.LIBRARIAN) librarians.remove((Librarian)user);
+		else return false;
+    	return true;
+    }
+    
     public void setStudent(Student student) {
     	students.add(student);
     }
@@ -64,11 +79,6 @@ public class Database implements Serializable{
     }
     public void setLibrarian(Librarian librarian) {
     	librarians.add(librarian);
-    }
-    
-    public boolean checkLogin() {
-        //TODO
-        return false;
     }
     
     public TreeSet<Student> getAllStudents() {
@@ -111,7 +121,7 @@ public class Database implements Serializable{
 		this.requests = requests;
 	}
     
-    public static void saveDatabase() throws IOException {
+    public void saveDatabase() throws IOException {
     	File file = new File("database.txt");
     	file.createNewFile();
     	if (!file.exists()) {
@@ -135,71 +145,59 @@ public class Database implements Serializable{
     	}
     }
     
-    public static void loadDatabase() throws IOException, ClassNotFoundException {
+    public void loadDatabase() throws IOException, ClassNotFoundException {
     	FileInputStream fis = new FileInputStream("database.txt");
     	ObjectInputStream ois = new ObjectInputStream(fis);
     	dbObject = (Database)ois.readObject();
     	ois.close();
     }
     
-    public static void login(String login, String password, int which) throws ClassNotFoundException, IOException, UnsuccessfulLoginException {
+    public void login(String login, String password) throws ClassNotFoundException, IOException, UnsuccessfulLoginException {
     	loadDatabase();
     	boolean isLogedIn = false;
-    	UserType whichUser = UserType.values()[which];
-    	switch(whichUser) {
-    	case STUDENT:
-    		for(Student student : students) {
-    			if(student.getLogin().equals(login) && student.getPassword().equals(password)) {
-    				currentUser = student;
-    				isLogedIn = true;
-    			} else {
-    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-    			}
-    		}
-    		break;
-    	case TEACHER:
-    		for(Teacher teacher : teachers) {
-    			if(teacher.getLogin().equals(login) && teacher.getPassword().equals(password)) {
-    				currentUser = teacher;
-    				isLogedIn = true;
-    			} else {
-    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-    			}
-    		}
-    		break;
-    	case MANAGER:
-    		for(Manager manager: managers) {
-    			if(manager.getLogin().equals(login) && manager.getPassword().equals(password)) {
-    				currentUser = manager;
-    				isLogedIn = true;
-    			} else {
-    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-    			}
-    		}
-    		break;
-    	case ADMIN:
-    		for(Admin admin: admins) {
-    			if(admin.getLogin().equals(login) && admin.getPassword().equals(password)) {
-    				currentUser = admin;
-    				isLogedIn = true;
-    			} else {
-    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-    			}
-    		}
-    		break;
-    	case LIBRARIAN:
-    		for(Librarian librarian: librarians) {
-    			if(librarian.getLogin().equals(login) && librarian.getPassword().equals(password)) {
-    				currentUser = librarian;
-    				isLogedIn = true;
-    			} else {
-    		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
-    			}
-    		}
-    		break;
-    	default:
-    		currentUser = null;
-    	}
+    	for(Student student : students) {
+			if(student.getLogin().equals(login) && student.getPassword().equals(password)) {
+				currentUser = student;
+				isLogedIn = true;
+			} else {
+		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+			}
+		}
+    		
+    	for(Teacher teacher : teachers) {
+			if(teacher.getLogin().equals(login) && teacher.getPassword().equals(password)) {
+				currentUser = teacher;
+				isLogedIn = true;
+			} else {
+		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+			}
+		}
+    	for(Manager manager: managers) {
+			if(manager.getLogin().equals(login) && manager.getPassword().equals(password)) {
+				currentUser = manager;
+				isLogedIn = true;
+			} else {
+		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+			}
+		}
+    	for(Admin admin: admins) {
+			if(admin.getLogin().equals(login) && admin.getPassword().equals(password)) {
+				currentUser = admin;
+				isLogedIn = true;
+			} else {
+		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+			}
+		}
+    	for(Librarian librarian: librarians) {
+			if(librarian.getLogin().equals(login) && librarian.getPassword().equals(password)) {
+				currentUser = librarian;
+				isLogedIn = true;
+			} else {
+		        throw new UnsuccessfulLoginException ("Incorrect login or password : " + login + " " + password );
+			}
+		}
+
+    	
     	String success = (isLogedIn) ? "successful" : "not successful";
     	System.out.println("Log in is " + success);
     }
@@ -207,11 +205,20 @@ public class Database implements Serializable{
     public static void logout() {
     	currentUser = null;
     }
+    public static boolean changePassword(String oldPassword, String newPassword) {
+        if(oldPassword.equals(currentUser.getPassword())) {
+        	currentUser.setPassword(newPassword);
+            return true;
+        }   
+        return false;
+    }
+	@Override
 	public String toString() {
 		return "Database [students=" + students + ", teachers=" + teachers + ", admins=" + admins + ", managers="
 				+ managers + ", librarians=" + librarians + ", courses=" + courses + ", books=" + books + ", logFiles="
-				+ logFiles + ", newsWall=" + newsWall + ", requests=" + requests + ", messages=" + messages + "]";
+				+ logFiles + ", newsWall=" + newsWall + "]";
 	}
+	
     
 	
 }

@@ -1,6 +1,8 @@
 package ANAT;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Admin extends User {
@@ -60,16 +62,18 @@ public class Admin extends User {
         //TODO
     }
     
-    public void showInterface() {
+    public void showInterface() throws IOException {
+    	super.showBasicInterface();
     	  while(true) {
-            System.out.println("Enter number(S to stop choosing): ");
-            System.out.println("1.add User");
-            System.out.println("2.update User");
-            System.out.println("3.delete User");
-            System.out.println("4.View LogFiles");
-            Scanner input = new Scanner(System.in);
-            String s = input.next();
-            if(s.equals("S")) {
+            System.out.println("ADMIN PAGE\n" + "Enter number (Q to quit): ");
+            System.out.println("1. Add User");
+            System.out.println("2. Update User");
+            System.out.println("3. Delete User");
+            System.out.println("4. View LogFiles");
+            System.out.println("5. Main menu");
+    		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String s = br.readLine();
+            if(s.equals("Q")) {
                System.exit(0);
             }
             else 
@@ -79,7 +83,8 @@ public class Admin extends User {
           	  }
           	  if(s.equals("2")) {continue;}
           	  if(s.equals("3")) {continue;}
-          	  if(s.equals("4")) {this.seeLogFiles();}
+          	  if(s.equals("4")) this.seeLogFiles();
+          	  if(s.equals("5")) this.showBasicInterface();
             }
     	  }
     

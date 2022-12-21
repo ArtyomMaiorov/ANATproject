@@ -3,20 +3,15 @@ package ANAT;
 import java.io.Serializable;
 import java.util.Vector;
 
-/**
-* @generated
-*/
 public class Course implements Serializable{
 
 	private static final long serialVersionUID = 1L;
     private String nameOfCourse;
     private String courseID;
-    private Vector instructors;
+    private Vector<Teacher> teachers;
     private int credits;
-    private Vector schedule;
-    private Teacher teacher;
-    private Lesson lesson;
-    private Student students;
+    private Vector<Lesson> schedule;
+    private Vector<Student> students;
     
     
     public String getNameOfCourse() {
@@ -35,12 +30,12 @@ public class Course implements Serializable{
         this.courseID = courseID;
     }
 
-    public Vector getInstructors() {
-        return this.instructors;
+    public Vector<Teacher> getTeachers() {
+        return this.teachers;
     }
 
-    public void setInstructors(Vector instructors) {
-        this.instructors = instructors;
+    public void setInstructors(Vector<Teacher> teachers) {
+        this.teachers = teachers;
     }
     
     public int getCredits() {
@@ -51,35 +46,20 @@ public class Course implements Serializable{
         this.credits = credits;
     }
     
-    public Vector getSchedule() {
+    public Vector<Lesson> getSchedule() {
         return this.schedule;
     }
 
-    public void setSchedule(Vector schedule) {
+    public void setSchedule(Vector<Lesson> schedule) {
         this.schedule = schedule;
     }
-    
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    public Lesson getLesson() {
-        return this.lesson;
-    }
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-
-    public Student getStudents() {
+    public Vector<Student> getStudents() {
         return this.students;
     }
 
-    public void setStudent(Student students) {
+    public void setStudents(Vector<Student> students) {
         this.students = students;
     }
     
