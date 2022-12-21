@@ -12,6 +12,15 @@ public class Journal {
 	public double getPoint(Lesson lesson){
 		return points.get(lesson);
 	}
+	public double calculatePoints() {
+		Enumeration<Lesson> e = points.keys();
+		double sum = 0;
+        while (e.hasMoreElements()) {
+            Lesson key = e.nextElement();
+            sum += points.get(key);
+        }
+        return sum;
+	}
 	public void setPoint(Lesson lesson, double point) {
 		this.points.put(lesson, point);
 	}

@@ -43,7 +43,7 @@ public class Course implements Serializable{
         this.instructors = instructors;
     }
     
-    private int getCredits() {
+    public int getCredits() {
         return this.credits;
     }
 

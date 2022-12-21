@@ -15,7 +15,7 @@ public class Student extends User implements CanBeResearcher{
     
     private Hashtable<Course,Journal> journals;
     private Vector<Lesson> schedule; //Schedule of student
-    
+    private Transcript transcript;
     
     public Student() throws IOException {
     	super();
