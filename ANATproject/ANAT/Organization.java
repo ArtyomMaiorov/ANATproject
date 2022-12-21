@@ -44,7 +44,7 @@ public class Organization {
 //        }
 
     
-    public void addMembers(Organization name, Student s) {
+    public void addMembers(Student s) {
       this.members.add(s);
     }
     
