@@ -6,9 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 
 public class Mark implements Serializable{
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private double points; // /100
     private double firstAtt; // /30
@@ -57,6 +55,7 @@ public class Mark implements Serializable{
     }
    
     public Mark() {};
+    
     public Mark(boolean flag) throws IOException {
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter 1st attestation points");
