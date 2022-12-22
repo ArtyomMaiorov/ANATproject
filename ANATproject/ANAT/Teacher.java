@@ -58,7 +58,7 @@ public class Teacher extends Employee  {
     	student.doAttendance(lesson, Attendance.Late);
     }
     
-    public void putMark(String studentID, String courseName, Mark mark) {
+    public void putMark(String studentID, String courseName, int mark) {
     	Database db = Database.getInstance();
     	Student dbStudent = null;
     	Course dbCourse = null;
@@ -109,7 +109,7 @@ public class Teacher extends Employee  {
         		   System.out.println("Enter the name of the course");
         		   String courseName = br.readLine();
         		   System.out.println("Which mark to put?");
-        		   Mark m = new Mark(true);
+        		   int m = Integer.parseInt(br.readLine());
         		   this.putMark(id, courseName, m);
                    Database.getInstance().saveDatabase();
         	   }

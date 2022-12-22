@@ -118,7 +118,7 @@ public class Student extends User implements CanBeResearcher{
         
         if(Manager.approveRegistration(this, course)) {
         	
-        	course.getStudentsAndMarks().put(this, new Mark());
+        	course.getStudentsAndMarks().put(this, 0);
         }
         return false;
     }
