@@ -104,10 +104,6 @@ public class Student extends User implements CanBeResearcher{
         //TODO
     }
     
-    public boolean dropCourse() {
-        //TODO
-        return false;
-    }
    
     public void viewCourses() {
         //TODO
@@ -118,9 +114,13 @@ public class Student extends User implements CanBeResearcher{
         
         if(Manager.approveRegistration(this, course)) {
         	
-        	course.getStudentsAndMarks().put(this, 0);
+        	course.getStudentsAndMarks().put(this, new Mark());
         }
         return false;
+    }
+    public void dropCourse(Course course) {
+    	this.totalCredits -= course.getCredits();
+    	course.getStudentsAndMarks().remove(this);
     }
     
     //Show list of lessons, which student has
@@ -197,7 +197,7 @@ public class Student extends User implements CanBeResearcher{
             else 
             {
                 if(s.equals("1")) {
-                	System.out.println("Here is a list of all available course: " + Database.getInstance().getAllCourses());
+                	System.out.println("Here is a list of all available courses: " + Database.getInstance().getAllCourses());
                 	System.out.println("Which one do you want to register for?");
                 	String enteredCourseName = br.readLine();
                 	for(Course c : Database.getInstance().getAllCourses()) {
@@ -205,14 +205,37 @@ public class Student extends User implements CanBeResearcher{
                 			this.registerForCourse(c);
                 		}
                 	}
+                } 
+                if(s.equals("2")) {
+                	System.out.println("Here is a list of all available courses: " + Database.getInstance().getAllCourses());
+                	System.out.println("Which one do you to see your marks for?");
+                	String enteredCourseName = br.readLine();
+                	for(Course c : Database.getInstance().getAllCourses()) {
+                		if(c.getNameOfCourse().equals(enteredCourseName)) {
+                			System.out.println(c.getStudentsAndMarks().get(this));
+                		}
+                	}
                 }
-                
+                if(s.equals("7")) {
+                	System.out.println("Here is a list of all available courses: " + Database.getInstance().getAllCourses());
+                	System.out.println("Which one do you want to drop?");
+                	String enteredCourseName = br.readLine();
+                	for(Course c : Database.getInstance().getAllCourses()) {
+                		if(c.getNameOfCourse().equals(enteredCourseName)) {
+                			this.dropCourse(c);
+                		}
+                	}
+                }
             }
-    	  }
+    	 }
     }
+
+	@Override
+	public String toString() {
+		return  super.toString() + " Student [faculty=" + faculty + ", major=" + major + ", degree=" + degree + ", totalCredits="
+				+ totalCredits + ", toString()=" + "]";
+	}
     
-    public String toString() {
-    	return super.toString() + " First name:"+ super.getFirstName()+"Last name:"+super.getLastName()+"Faculty"+ this.getFaculty();
-    }
+    
     
 }

@@ -80,6 +80,8 @@ public class Admin extends User {
             else 
             {
           	  if(s.equals("2")) {
+                  /* admin has to choose which user to create because they are stored separately */
+
                   System.out.println("1 - Add Student");
                   System.out.println("2 - Add Teacher");
                   System.out.println("3 - Add Manager");
@@ -120,6 +122,7 @@ public class Admin extends User {
                 System.out.println("5 - Delete Admin");
                 String userChoice = br.readLine();
                 switch(userChoice) {
+                /* admin has to choose which user to delete because they are stored separately */
                 	case "1":
                 		Student studentToBeRemoved = null;
                 		System.out.println("Here is a list of all Students: " + Database.getInstance().getAllStudents() + "\nWhich one do you want to remove?");

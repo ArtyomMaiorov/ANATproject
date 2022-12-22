@@ -58,7 +58,7 @@ public class Teacher extends Employee  {
     	student.doAttendance(lesson, Attendance.Late);
     }
     
-    public void putMark(String studentID, String courseName, int mark) {
+    public void putMark(String studentID, String courseName, Mark mark) {
     	Database db = Database.getInstance();
     	Student dbStudent = null;
     	Course dbCourse = null;
@@ -75,9 +75,11 @@ public class Teacher extends Employee  {
     			break;
     		}
     	}
+    			
+    	
     	if(dbStudent == null) System.out.println("Student not found");
     	else if (dbCourse == null) System.out.println("Course not found");
-    	else {
+    	else if (dbCourse.getStudentsAndMarks().keySet().contains(dbStudent)){
     		dbCourse.addMark(dbStudent, mark);
     		System.out.println("Mark put successfully");
     	}
@@ -109,7 +111,7 @@ public class Teacher extends Employee  {
         		   System.out.println("Enter the name of the course");
         		   String courseName = br.readLine();
         		   System.out.println("Which mark to put?");
-        		   int m = Integer.parseInt(br.readLine());
+        		   Mark m = new Mark(true);
         		   this.putMark(id, courseName, m);
                    Database.getInstance().saveDatabase();
         	   }

@@ -127,7 +127,7 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
 			System.out.println("Wrong user type");
 		}
 		System.out.println("Enter user's entrance year");
-		this.entranceYear= br.read();
+		this.entranceYear= Integer.parseInt(br.readLine());
 		
 		this.ID = generateUserId(temp, this.entranceYear);
 	}
@@ -137,7 +137,16 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     	String id = "";
     	if(userType == UserType.STUDENT) {
     		Student s = (Student)this;
-    		id += String.format("%02d", entranceYear) + getDegreeChar(s.getDegree()) + String.format("%06d", idCounter);
+    		char letter;
+    		if(s.getDegree()==Degree.BACHELOR)
+    			letter = 'B';
+    		else if(s.getDegree()==Degree.MASTER)
+    			letter = 'M';
+    		else if(s.getDegree() == Degree.PHD)
+    			letter = 'P';
+    		else
+    			letter = 'S';
+    		id += String.format("%02d", entranceYear) + letter + String.format("%06d", idCounter);
     		}
     	else if(userType == UserType.TEACHER)	
     		id += String.format("%02d", entranceYear) + "T" + String.format("%06d", idCounter);
@@ -263,6 +272,6 @@ public int compareTo(User user) {
 	public String toString() {
 		return "User [ID=" + ID + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", middleName=" + middleName + ", birthDate=" + birthDate
-				+ ", gender=" + gender + ", citizenship="+ citizenship + ", email=" + email + ", login=" + login + ", password=" + password + "]";
+				+ ", gender=" + gender + ", citizenship="+ citizenship + ", email=" + email + ", login=" + login + ", password=" + password + ", entrance year" + entranceYear + "]";
 	}
 }

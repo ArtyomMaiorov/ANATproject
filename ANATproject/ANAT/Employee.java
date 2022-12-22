@@ -23,7 +23,7 @@ public class Employee extends User {
 		InputStreamReader r = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(r);
 		System.out.println("Enter Employee's salary");
-		this.salary= br.read();
+		this.salary= Integer.parseInt(br.readLine());
 	}
 
 

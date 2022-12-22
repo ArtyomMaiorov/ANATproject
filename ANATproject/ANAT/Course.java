@@ -13,10 +13,10 @@ public class Course implements Serializable, Comparable<Course>{
     private int maxStudents;
     private int credits;
     private Vector<Lesson> schedule;
-    private HashMap<Student, Integer> studentsAndMarks;
+    private HashMap<Student, Mark> studentsAndMarks;
     
     {
-    	this.studentsAndMarks = new HashMap<Student, Integer>();
+    	this.studentsAndMarks = new HashMap<Student, Mark>();
     	this.schedule = new Vector<Lesson>();
     }
     private boolean isFull;
@@ -107,18 +107,18 @@ public class Course implements Serializable, Comparable<Course>{
         this.schedule = schedule;
     }
 
-    public HashMap<Student, Integer> getStudentsAndMarks() {
+    public HashMap<Student, Mark> getStudentsAndMarks() {
         return this.studentsAndMarks;
     }
 
-    public void setStudents(HashMap<Student, Integer> studentsAndMarks) {
+    public void setStudents(HashMap<Student, Mark> studentsAndMarks) {
         this.studentsAndMarks = studentsAndMarks;
     }
     
     
 
     //                          Operations                                  
-    public void addMark(Student student, int mark) {
+    public void addMark(Student student, Mark mark) {
     	this.studentsAndMarks.put(student, mark);
     }
 
