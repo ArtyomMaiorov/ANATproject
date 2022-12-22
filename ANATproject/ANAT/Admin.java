@@ -66,11 +66,11 @@ public class Admin extends User {
     	super.showBasicInterface();
     	  while(Database.currentUser!=null) {
             System.out.println("ADMIN PAGE\n" + "Enter number (Q to quit): ");
-            System.out.println("1 - Add User");
-            System.out.println("2 - Update User");
+            System.out.println("1 - Go to User Menu");
+            System.out.println("2 - Add User");
             System.out.println("3 - Delete User");
             System.out.println("4 - View LogFiles");
-            System.out.println("5 - Main menu");
+            System.out.println("5 - Update User");
             System.out.println("6 - View Database");
     		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String s = br.readLine();
@@ -79,7 +79,7 @@ public class Admin extends User {
             }
             else 
             {
-          	  if(s.equals("1")) {
+          	  if(s.equals("2")) {
                   System.out.println("1 - Add Student");
                   System.out.println("2 - Add Teacher");
                   System.out.println("3 - Add Manager");
@@ -111,10 +111,80 @@ public class Admin extends User {
                   Database.getInstance().saveDatabase();
 
           	  }
-          	  if(s.equals("2")) {continue;}
-          	  if(s.equals("3")) {continue;}
+          	  if(s.equals("5")) {continue;}
+          	  if(s.equals("3")) {
+          		System.out.println("1 - Delete Student");
+                System.out.println("2 - Delete Teacher");
+                System.out.println("3 - Delete Manager");
+                System.out.println("4 - Delete Librarian");
+                System.out.println("5 - Delete Admin");
+                String userChoice = br.readLine();
+                switch(userChoice) {
+                	case "1":
+                		Student studentToBeRemoved = null;
+                		System.out.println("Here is a list of all Students: " + Database.getInstance().getAllStudents() + "\nWhich one do you want to remove?");
+                		String enteredID = br.readLine();
+                    	for(Student student : Database.getInstance().getAllStudents()) {
+                    		if(student.getID().equals(enteredID)) {
+                    			studentToBeRemoved = student;
+                    		}
+                    	}
+                    	Database.getInstance().getAllStudents().remove(studentToBeRemoved);
+                    	System.out.println("Student removed successfully");
+                		break;
+                	case "2":
+                		Teacher teacherToBeRemoved = null;
+                		System.out.println("Here is a list of all Teachers: " + Database.getInstance().getAllTeachers() + "\nWhich one do you want to remove?");
+                		enteredID = br.readLine();
+                    	for(Teacher teacher: Database.getInstance().getAllTeachers()) {
+                    		if(teacher.getID().equals(enteredID)) {
+                    			teacherToBeRemoved = teacher;
+                    		}
+                    	}
+                    	Database.getInstance().getAllTeachers().remove(teacherToBeRemoved);
+                    	System.out.println("Teacher removed successfully");
+                		break;
+                	case "3":
+                		Manager managerToBeRemoved = null;
+                		System.out.println("Here is a list of all Managers: " + Database.getInstance().getAllManagers() + "\nWhich one do you want to remove?");
+                		enteredID = br.readLine();
+                    	for(Manager manager: Database.getInstance().getAllManagers()) {
+                    		if(manager.getID().equals(enteredID)) {
+                    			managerToBeRemoved = manager;
+                    		}
+                    	}
+                    	Database.getInstance().getAllManagers().remove(managerToBeRemoved);
+                    	System.out.println("Manager removed successfully");
+                		break;
+                	case "4":
+                		Librarian librarianToBeRemoved = null;
+                		System.out.println("Here is a list of all Librarians: " + Database.getInstance().getAllLibrarians() + "\nWhich one do you want to remove?");
+                		enteredID = br.readLine();
+                    	for(Librarian librarian: Database.getInstance().getAllLibrarians()) {
+                    		if(librarian.getID().equals(enteredID)) {
+                    			librarianToBeRemoved = librarian;
+                    		}
+                    	}
+                    	Database.getInstance().getAllLibrarians().remove(librarianToBeRemoved);
+                    	System.out.println("Librarian removed successfully");
+                		break;
+                	case "5":
+                		Admin adminToBeRemoved = null;
+                		System.out.println("Here is a list of all Admins: " + Database.getInstance().getAllAdmins() + "\nWhich one do you want to remove?");
+                		enteredID = br.readLine();
+                    	for(Admin admin: Database.getInstance().getAllAdmins()) {
+                    		if(admin.getID().equals(enteredID)) {
+                    			adminToBeRemoved = admin;
+                    		}
+                    	}
+                    	Database.getInstance().getAllAdmins().remove(adminToBeRemoved);
+                    	System.out.println("Admin removed successfully");
+                }
+                Database.getInstance().saveDatabase();
+
+          	  }
           	  if(s.equals("4")) this.seeLogFiles();
-          	  if(s.equals("5")) this.showBasicInterface();
+          	  if(s.equals("1")) this.showBasicInterface();
           	  if(s.equals("6")) System.out.println(Database.getInstance().toString());;
 
             }

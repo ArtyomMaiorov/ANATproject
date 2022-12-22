@@ -176,8 +176,8 @@ public class Student extends User implements CanBeResearcher{
     
     public void showInterface() throws IOException {
     	 super.showBasicInterface();
-    	 while(true) {
-            System.out.println("STUDENT PAGE\n Enter number (Q to stop choosing): ");
+    	 while(Database.currentUser!=null) {
+            System.out.println("STUDENT PAGE\n Enter number (Q to quit): ");
             System.out.println("1 - Register For a Course");
             System.out.println("2 - View Marks");
             System.out.println("3 - Rate Teacher");
@@ -206,6 +206,7 @@ public class Student extends User implements CanBeResearcher{
                 		}
                 	}
                 }
+                
             }
     	  }
     }

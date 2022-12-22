@@ -144,8 +144,8 @@ public class Manager extends Employee implements CanBeResearcher {
     
     public void showInterface() throws IOException {
    	 super.showBasicInterface();
-   	 while(true) {
-           System.out.println("MANAGER PAGE\n Enter number (Q to stop choosing): ");
+   	 while(Database.currentUser!=null) {
+           System.out.println("MANAGER PAGE\n Enter number (Q to quit): ");
            System.out.println("1 - Go to User Menu");
            System.out.println("2 - Create Course");
            System.out.println("3 - Delete Course");

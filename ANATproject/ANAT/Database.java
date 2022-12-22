@@ -93,6 +93,10 @@ public class Database implements Serializable{
         return this.teachers;
     }
     
+    public TreeSet<Librarian> getAllLibrarians(){
+    	return this.librarians;
+    }
+    
     public HashSet<Admin> getAllAdmins() {
         return this.admins;
     }
@@ -148,7 +152,6 @@ public class Database implements Serializable{
 	        oos.writeObject(dbObject);
 	        oos.writeObject("hello");
 	        oos.close();
-	        System.out.println("The Object  was succesfully written to a file");
     	} catch(Exception e) {
     		e.printStackTrace();
     	}
@@ -214,12 +217,16 @@ public class Database implements Serializable{
     public static void logout() {
     	currentUser = null;
     }
-    public static boolean changePassword(String oldPassword, String newPassword) {
+    public static boolean changePassword(String oldPassword, String newPassword) throws IOException {
         if(oldPassword.equals(currentUser.getPassword())) {
         	currentUser.setPassword(newPassword);
+        	dbObject.saveDatabase();
             return true;
+            
         }   
         return false;
+        
+
     }
 	@Override
 	public String toString() {

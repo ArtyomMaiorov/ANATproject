@@ -22,6 +22,8 @@ public class Course implements Serializable, Comparable<Course>{
     private boolean isFull;
 
     public Course() throws IOException {
+		this.isFull = studentsAndMarks.size() > maxStudents;
+
     	InputStreamReader r = new InputStreamReader(System.in);
     	BufferedReader br = new BufferedReader(r);
     	System.out.println("Enter course's faculty");
@@ -36,10 +38,9 @@ public class Course implements Serializable, Comparable<Course>{
 		System.out.println("Enter course's id");
 		this.courseID = br.readLine();
 		System.out.println("Enter course capacity");
-		this.maxStudents = br.read();
+		this.maxStudents = Integer.parseInt(br.readLine());
 		System.out.println("Enter course's credit");
-		this.credits = br.read();
-		this.isFull = studentsAndMarks.size() > maxStudents;
+		this.credits = Integer.parseInt(br.readLine());
     }
     
     public String getNameOfCourse() {
@@ -105,7 +106,6 @@ public class Course implements Serializable, Comparable<Course>{
     public void setSchedule(Vector<Lesson> schedule) {
         this.schedule = schedule;
     }
-
 
     public TreeMap<Student, Mark> getStudentsAndMarks() {
         return this.studentsAndMarks;

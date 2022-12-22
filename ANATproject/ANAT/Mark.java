@@ -1,6 +1,16 @@
 package ANAT;
-public class Mark {
-    private double points; // /100
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Serializable;
+
+public class Mark implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private double points; // /100
     private double firstAtt; // /30
     private double secondAtt; // /30
     private double finalScore; // /40
@@ -47,7 +57,18 @@ public class Mark {
     }
    
     public Mark() {};
-
+    public Mark(boolean flag) throws IOException {
+    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter 1st attestation points");
+		this.firstAtt = Double.parseDouble(br.readLine());
+		System.out.println("Enter 2nd attestation points");
+		this.secondAtt = Double.parseDouble(br.readLine());
+		System.out.println("Enter final score");
+		this.finalScore = Double.parseDouble(br.readLine());
+		this.totalAtt = this.firstAtt + this.secondAtt;
+		this.points = this.totalAtt + this.finalScore;
+		
+    }
     public Mark(double firstAtt) {
 		super();
 		this.firstAtt = firstAtt;

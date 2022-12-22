@@ -177,7 +177,7 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
     
     public void showBasicInterface() throws IOException {
   	  while(Database.currentUser!=null) {
-          System.out.println("USER PAGE\n" + "Enter number (S to stop choosing): ");
+          System.out.println("USER PAGE\n" + "Enter number (Q to quit): ");
           System.out.println("1 - Logout");
           System.out.println("2 - View 2nd menu");
           System.out.println("3 - Change Password");
@@ -201,14 +201,17 @@ public abstract class User implements Serializable, Comparable<User>, CanBeResea
                   String oldPassword = br.readLine();
         		  System.out.println("Enter new Password  to change");
                   String newPassword = br.readLine();
+                  Database.changePassword(oldPassword, newPassword);
         		  if(Database.changePassword(oldPassword,newPassword)) 
         			  System.out.println("Succesfully changed");
         		  else System.out.println("Try again!Wrong old password");
+        		  	Database.getInstance().saveDatabase();
                   continue;
         	  }
         	  if(s.equals("4")) {this.viewNews();}
           }
   	  }
+      Database.getInstance().saveDatabase();
     }
     
     public void sendMessage(User recipient, String subject, String body) {

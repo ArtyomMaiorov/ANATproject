@@ -58,19 +58,19 @@ public class Teacher extends Employee  {
     	student.doAttendance(lesson, Attendance.Late);
     }
     
-    public void putMark(Student student, Course course, Mark mark) {
+    public void putMark(String studentID, String courseName, Mark mark) {
     	Database db = Database.getInstance();
     	Student dbStudent = null;
     	Course dbCourse = null;
     	
     	for(Student s : db.getAllStudents()) {
-    		if(s.equals(student)) {
+    		if(s.getID().equals(studentID)) {
     			dbStudent = s;
     			break;
     		}
     	}
     	for(Course c : db.getAllCourses()) {
-    		if(c.equals(course)) {
+    		if(c.getNameOfCourse().equals(courseName)) {
     			dbCourse = c;
     			break;
     		}
@@ -82,6 +82,41 @@ public class Teacher extends Employee  {
     		System.out.println("Mark put successfully");
     	}
     }
+    
+    public void showInterface() throws IOException {
+   	 super.showBasicInterface();
+   	 while(Database.currentUser!=null) {
+           System.out.println("TEACHER PAGE\n Enter number (Q to stop choosing): ");
+           System.out.println("1 - Go to User menu");
+           System.out.println("2 - View Marks");
+           System.out.println("4 - Put mark");
+           System.out.println("5 - View Student Organizations");
+           System.out.println("7 - Drop Course");
+           System.out.println("8 - View Courses");
+           System.out.println("9 - View Schedule");
+
+           BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+           String s = br.readLine();
+           if(s.equalsIgnoreCase("Q")) {
+              System.exit(0);
+           }
+           else 
+           {
+        	   if(s.equals("1")) this.showBasicInterface();
+        	   if(s.equals("4")) {
+        		   System.out.println("Enter student's id: ");
+        		   String id = br.readLine();
+        		   System.out.println("Enter the name of the course");
+        		   String courseName = br.readLine();
+        		   System.out.println("Which mark to put?");
+        		   Mark m = new Mark(true);
+        		   this.putMark(id, courseName, m);
+                   Database.getInstance().saveDatabase();
+        	   }
+               
+           }
+   	  }
+   }
     
     public void viewCourse() {
         //TODO
